@@ -46,3 +46,6 @@ app.*.map.json
 
 # KML files
 *.kml
+
+# mp4
+*.mp4
