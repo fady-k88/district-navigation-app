@@ -47,5 +47,10 @@ app.*.map.json
 # KML files
 *.kml
 
+# Hash file
+district.hash256.txt
+
 # mp4
 *.mp4
+
+# 
