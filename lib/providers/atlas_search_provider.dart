@@ -43,6 +43,13 @@ class AtlasSearchProvider extends ChangeNotifier {
     return _repository.find(_selectedProject!, number);
   }
 
+  // Add this method to your AtlasSearchProvider class
+  void selectDefaultProjectIfNone() {
+    if (_selectedProject == null && projects.isNotEmpty) {
+      selectProject(projects.first);
+    }
+  }
+
   void clear() {
     _query = '';
     _results = _selectedProject != null
