@@ -44,7 +44,7 @@ class KmlParserService implements IKmlParserService {
             project: project,
             latitude: lat,
             longitude: lon,
-            color: Colors.red,
+            color: Colors.blue,
           ),
         );
       }

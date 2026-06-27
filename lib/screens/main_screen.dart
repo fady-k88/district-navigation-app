@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:district_navigation_app/models/building.dart';
@@ -25,6 +26,8 @@ class _MainScreenState extends State<MainScreen> {
   final MapController _mapController = MapController();
   final TextEditingController _searchController = TextEditingController();
   Building? _selectedBuilding;
+  LatLng? _userLocation;
+  bool _isLocating = false;
 
   static const LatLng _districtCenter = LatLng(29.9117, 30.9696);
   final List<String> _featuredBuildings = ['45', '104', '5'];
@@ -91,6 +94,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: AtlasMap(
                   buildings: search.results,
                   selected: _selectedBuilding,
+                  userLocation: _userLocation,
                   center: _districtCenter,
                   mapController: _mapController,
                   onTap: _onBuildingTapped,
@@ -142,18 +146,40 @@ class _MainScreenState extends State<MainScreen> {
                 right: 12,
                 bottom: 60,
                 child: MapControls(
-                  onMyLocation: () {},
-                  onCenter: () => _mapController.move(_districtCenter, 15),
-                  onZoomIn: () => _mapController.move(
+                  onMyLocation: _onMyLocation,
+                  onCenter: () async =>
+                      _mapController.move(_districtCenter, 15),
+                  onZoomIn: () async => _mapController.move(
                     _mapController.camera.center,
                     _mapController.camera.zoom + 1,
                   ),
-                  onZoomOut: () => _mapController.move(
+                  onZoomOut: () async => _mapController.move(
                     _mapController.camera.center,
                     _mapController.camera.zoom - 1,
                   ),
                 ),
               ),
+
+              // Loading overlay for my location
+              if (_isLocating)
+                Positioned.fill(
+                  child: Container(
+                    color: Colors.black.withOpacity(0.4),
+                    child: const Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CircularProgressIndicator(color: Colors.green),
+                          SizedBox(height: 16),
+                          Text(
+                            'جارٍ تحديد موقعك...',
+                            style: TextStyle(color: Colors.white, fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
 
               // Footer
               const Positioned(
@@ -192,5 +218,32 @@ class _MainScreenState extends State<MainScreen> {
         });
       }
     });
+  }
+
+  Future<void> _onMyLocation() async {
+    setState(() => _isLocating = true); // ← show loading
+
+    try {
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) return;
+      }
+      if (permission == LocationPermission.deniedForever) return;
+
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+        ),
+      );
+
+      setState(() {
+        _userLocation = LatLng(position.latitude, position.longitude);
+      });
+
+      _mapController.move(_userLocation!, 17);
+    } finally {
+      setState(() => _isLocating = false); // ← hide loading always
+    }
   }
 }
