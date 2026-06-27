@@ -25,10 +25,27 @@ class _AppEntryState extends State<AppEntry> {
   Widget build(BuildContext context) {
     return Consumer<AtlasSyncProvider>(
       builder: (context, sync, _) {
-        if (sync.isLoading) return const LoadingScreen();
-        if (sync.hasError) return ErrorScreen(message: sync.errorMessage ?? '');
-        if (sync.isReady) return const MainScreen();
-        return const LoadingScreen();
+        Widget child;
+
+        if (sync.isLoading) {
+          child = const LoadingScreen(key: ValueKey('loading'));
+        } else if (sync.hasError) {
+          child = ErrorScreen(
+            key: const ValueKey('error'),
+            message: sync.errorMessage ?? '',
+          );
+        } else if (sync.isReady) {
+          child = const MainScreen(key: ValueKey('main'));
+        } else {
+          child = const LoadingScreen(key: ValueKey('loading'));
+        }
+
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 600),
+          transitionBuilder: (child, animation) =>
+              FadeTransition(opacity: animation, child: child),
+          child: child,
+        );
       },
     );
   }
