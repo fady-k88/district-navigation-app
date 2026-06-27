@@ -1,5 +1,5 @@
-// kml_parser_service.dart
 import 'package:xml/xml.dart';
+import 'package:flutter/material.dart';
 import 'package:district_navigation_app/models/building.dart';
 import 'package:district_navigation_app/services/atlas_sync/i_kml_parser_service.dart';
 
@@ -44,6 +44,7 @@ class KmlParserService implements IKmlParserService {
             project: project,
             latitude: lat,
             longitude: lon,
+            color: Colors.red,
           ),
         );
       }
