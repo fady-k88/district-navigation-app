@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:district_navigation_app/models/building.dart';
 import 'package:district_navigation_app/widgets/atlas_map.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
@@ -13,6 +12,7 @@ import 'package:district_navigation_app/widgets/atlas_search_bar.dart';
 import 'package:district_navigation_app/widgets/featured_buildings.dart';
 import 'package:district_navigation_app/widgets/building_bottom_sheet.dart';
 import 'package:district_navigation_app/providers/atlas_search_provider.dart';
+import 'package:district_navigation_app/services/url_launch/url_launcher_service.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -54,12 +54,12 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<void> _startNavigation(Building building) async {
-    final url = Uri.parse(
-      'https://www.google.com/maps/dir/?api=1&destination=${building.latitude},${building.longitude}&travelmode=driving',
-    );
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
-    }
+    // url
+    String url =
+        'https://www.google.com/maps/dir/?api=1&destination=${building.latitude},${building.longitude}&travelmode=driving';
+
+    // Launche the url
+    UrlLauncherService.launchURL(url);
   }
 
   void _showBuildingSheet(Building building) {
