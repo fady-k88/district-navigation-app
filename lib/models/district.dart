@@ -1,5 +1,6 @@
 // models/district.dart
 import 'package:district_navigation_app/models/building.dart';
+import 'package:district_navigation_app/utils/arabic_digit_normalizer.dart';
 
 class District {
   // District name
@@ -21,14 +22,23 @@ class District {
     return buildings.where((b) => b.project == project).toList();
   }
 
-  // search by number within a project
+  // search by number within a project — tolerates Arabic-Indic digits and
+  // leading/trailing whitespace in the query
   static List<Building> search(
     List<Building> buildings,
     String project,
     String query,
   ) {
+    final normalizedQuery = ArabicDigitNormalizer.normalize(query);
+    if (normalizedQuery.isEmpty) return buildingsFor(buildings, project);
     return buildings
-        .where((b) => b.project == project && b.number.contains(query.trim()))
+        .where(
+          (b) =>
+              b.project == project &&
+              ArabicDigitNormalizer.normalize(
+                b.number,
+              ).contains(normalizedQuery),
+        )
         .toList();
   }
 }
