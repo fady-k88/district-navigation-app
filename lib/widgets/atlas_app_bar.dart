@@ -1,6 +1,7 @@
 // widgets/atlas_app_bar.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:district_navigation_app/widgets/info_sheet.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
 import 'package:district_navigation_app/providers/settings_provider.dart';
@@ -49,7 +50,11 @@ class AtlasAppBar extends StatelessWidget {
                 ),
               ),
               SizedBox(width: d.paddingS),
-              _ToolbarIcon(icon: Icons.info_outline, onTap: () {}, d: d),
+              _ToolbarIcon(
+                icon: Icons.info_outline,
+                onTap: () => InfoSheet.show(context),
+                d: d,
+              ),
               SizedBox(width: d.paddingS * 0.75),
               // ── Tune button now opens the settings sheet ──────────────────
               _ToolbarIcon(
