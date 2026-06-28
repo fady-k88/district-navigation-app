@@ -1,3 +1,4 @@
+// screens/error_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
@@ -23,9 +24,11 @@ class ErrorScreen extends StatelessWidget {
               children: [
                 Icon(Icons.wifi_off, color: AtlasColors.danger, size: d.iconL),
                 SizedBox(height: d.paddingL),
+
                 Text(
                   'تعذّر تحميل البيانات',
                   textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl,
                   style: TextStyle(
                     color: AtlasColors.textPrimary,
                     fontSize: d.fontXXL,
@@ -33,15 +36,20 @@ class ErrorScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: d.paddingM),
+
                 Text(
-                  message,
+                  'يحتاج التطبيق إلى اتصال بالإنترنت عند تشغيله لأول مرة.\nتحقق من اتصالك وأعد المحاولة.',
                   textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl,
                   style: TextStyle(
                     color: AtlasColors.textSecondary,
                     fontSize: d.fontM,
+                    height: 1.6,
                   ),
                 ),
+
                 SizedBox(height: d.paddingXL),
+
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AtlasColors.primary,
