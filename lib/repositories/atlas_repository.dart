@@ -1,6 +1,7 @@
 // repositories/atlas_repository.dart
 import 'package:district_navigation_app/models/building.dart';
 import 'package:district_navigation_app/models/district.dart';
+import 'package:district_navigation_app/utils/arabic_digit_normalizer.dart';
 
 class AtlasRepository {
   List<Building> _buildings = [];
@@ -22,10 +23,22 @@ class AtlasRepository {
       District.search(_buildings, project, query);
 
   // find exact building
+  // Building? find(String project, String number) {
+  //   try {
+  //     return _buildings.firstWhere(
+  //       (b) => b.project == project && b.number == number,
+  //     );
+  //   } catch (_) {
+  //     return null;
+  //   }
+  // }
   Building? find(String project, String number) {
+    final normalizedNumber = ArabicDigitNormalizer.normalize(number);
     try {
       return _buildings.firstWhere(
-        (b) => b.project == project && b.number == number,
+        (b) =>
+            b.project == project &&
+            ArabicDigitNormalizer.normalize(b.number) == normalizedNumber,
       );
     } catch (_) {
       return null;
