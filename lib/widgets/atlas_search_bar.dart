@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
+import 'package:district_navigation_app/themes/app_dimensions.dart';
 import 'package:district_navigation_app/providers/atlas_search_provider.dart';
 
 class AtlasSearchBar extends StatelessWidget {
@@ -15,61 +16,99 @@ class AtlasSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Row(
-        children: [
-          // Search button
-          GestureDetector(
-            onTap: onSearch,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              decoration: BoxDecoration(
-                color: AtlasColors.searchBtn,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Text(
-                'بحث',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 8),
+    final d = AppDimensions(context);
 
-          // Building number input
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: d.paddingM),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // ── Search button ──────────────────────────────────────────────────
+          _SearchButton(d: d, onSearch: onSearch),
+
+          SizedBox(width: d.paddingS),
+
+          // ── Building number input ──────────────────────────────────────────
           Expanded(
             child: TextField(
               controller: controller,
               textAlign: TextAlign.right,
               keyboardType: TextInputType.number,
-              style: const TextStyle(color: AtlasColors.textPrimary),
-              decoration: const InputDecoration(
+              textDirection: TextDirection
+                  .rtl, // Forces proper Arabic punctuation direction handling
+              style: TextStyle(
+                color: AtlasColors.textPrimary,
+                fontSize: d.fontM,
+              ),
+              decoration: InputDecoration(
                 hintText: 'رقم العمارة...',
-                hintStyle: TextStyle(color: AtlasColors.textSecondary),
+                hintTextDirection: TextDirection.rtl,
+                hintStyle: TextStyle(
+                  color: AtlasColors.textSecondary,
+                  fontSize: d.fontM,
+                ),
                 border: InputBorder.none,
+                isDense: true,
                 contentPadding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 12,
+                  horizontal: d.paddingM,
+                  vertical: d.paddingS,
                 ),
               ),
               onSubmitted: (_) => onSearch(),
             ),
           ),
-          const SizedBox(width: 8),
 
-          // Project dropdown
-          _ProjectDropdown(),
+          SizedBox(width: d.paddingS),
+
+          // ── Project dropdown ───────────────────────────────────────────────
+          _ProjectDropdown(d: d),
         ],
       ),
     );
   }
 }
 
+// ─── Search button ───────────────────────────────────────────────────────────
+
+class _SearchButton extends StatelessWidget {
+  final AppDimensions d;
+  final VoidCallback onSearch;
+
+  const _SearchButton({required this.d, required this.onSearch});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onSearch,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: d.paddingL,
+          vertical: d.paddingS,
+        ),
+        decoration: BoxDecoration(
+          color: AtlasColors.searchBtn,
+          borderRadius: BorderRadius.circular(d.borderRadiusS),
+        ),
+        child: Text(
+          'بحث',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: d.fontL,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Project dropdown trigger ────────────────────────────────────────────────
+
 class _ProjectDropdown extends StatelessWidget {
+  final AppDimensions d;
+
+  const _ProjectDropdown({required this.d});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AtlasSearchProvider>(
@@ -79,31 +118,45 @@ class _ProjectDropdown extends StatelessWidget {
 
         return GestureDetector(
           onTap: () => _showProjectPicker(context, search, projects, selected),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            decoration: BoxDecoration(
-              color: AtlasColors.surfaceLight,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AtlasColors.chipBorder),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.30,
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.keyboard_arrow_down,
-                  color: AtlasColors.textSecondary,
-                  size: 16,
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  selected ?? 'مشروع...',
-                  style: const TextStyle(
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: d.paddingM,
+                vertical: d.paddingS,
+              ),
+              decoration: BoxDecoration(
+                color: AtlasColors.surfaceLight,
+                borderRadius: BorderRadius.circular(d.borderRadiusS),
+                border: Border.all(color: AtlasColors.chipBorder),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment
+                    .center, // Centers elements beautifully within the box bounds
+                children: [
+                  Icon(
+                    Icons.keyboard_arrow_down,
                     color: AtlasColors.textSecondary,
-                    fontSize: 12,
+                    size: d.iconS,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+                  SizedBox(width: d.paddingXS),
+                  Flexible(
+                    child: Text(
+                      selected ?? 'مشروع...',
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                        color: AtlasColors.textSecondary,
+                        fontSize: d.fontS,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -117,44 +170,68 @@ class _ProjectDropdown extends StatelessWidget {
     List<String> projects,
     String? selected,
   ) {
+    final d = AppDimensions(context);
     showModalBottomSheet(
       context: context,
       backgroundColor: AtlasColors.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      isScrollControlled: true,
+      // ← Remove the fixed maxHeight constraint entirely
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(d.borderRadius),
+        ),
       ),
-      builder: (_) => Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            const Text(
-              'اختر المشروع',
-              style: TextStyle(
-                color: AtlasColors.textPrimary,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            ...projects.map(
-              (project) => ListTile(
-                contentPadding: EdgeInsets.zero,
-                trailing: Text(
-                  project,
-                  style: const TextStyle(color: AtlasColors.textPrimary),
+      builder: (_) => SafeArea(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+            d.paddingL,
+            d.paddingL,
+            d.paddingL,
+            d.paddingM, // ← was paddingXL, reduced
+          ),
+          child: Column(
+            mainAxisSize:
+                MainAxisSize.min, // ← This is the key: shrink-wraps to content
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                'اختر المشروع',
+                style: TextStyle(
+                  color: AtlasColors.textPrimary,
+                  fontSize: d.fontXL,
+                  fontWeight: FontWeight.bold,
                 ),
-                leading: selected == project
-                    ? const Icon(Icons.check, color: AtlasColors.primary)
-                    : null,
-                onTap: () {
-                  search.selectProject(project);
-                  Navigator.pop(context);
+              ),
+              SizedBox(height: d.paddingM), // ← was paddingL, tightened
+              // No Flexible wrapper needed — ListView shrinks with NeverScrollableScrollPhysics
+              ListView.builder(
+                shrinkWrap:
+                    true, // ← Makes ListView take only the space it needs
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: projects.length,
+                itemBuilder: (context, index) {
+                  final project = projects[index];
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    trailing: Text(
+                      project,
+                      style: TextStyle(
+                        color: AtlasColors.textPrimary,
+                        fontSize: d.fontM,
+                      ),
+                    ),
+                    leading: selected == project
+                        ? const Icon(Icons.check, color: AtlasColors.primary)
+                        : null,
+                    onTap: () {
+                      search.selectProject(project);
+                      Navigator.pop(context);
+                    },
+                  );
                 },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

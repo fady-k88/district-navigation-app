@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:district_navigation_app/models/building.dart';
 import 'package:district_navigation_app/widgets/atlas_map.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
+import 'package:district_navigation_app/themes/app_dimensions.dart';
 import 'package:district_navigation_app/widgets/map_controls.dart';
 import 'package:district_navigation_app/widgets/atlas_footer.dart';
 import 'package:district_navigation_app/widgets/atlas_app_bar.dart';
@@ -32,6 +33,8 @@ class _MainScreenState extends State<MainScreen> {
   static const LatLng _districtCenter = LatLng(29.9117, 30.9696);
   final List<String> _featuredBuildings = ['45', '104', '5'];
 
+  // ── Navigation ────────────────────────────────────────────────────────────
+
   void _onBuildingTapped(Building building) {
     setState(() => _selectedBuilding = building);
     _mapController.move(LatLng(building.latitude, building.longitude), 17);
@@ -49,8 +52,15 @@ class _MainScreenState extends State<MainScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('لم يتم العثور على العمارة'),
+          content: Text(
+            'لم يتم العثور على العمارة',
+            textDirection: TextDirection
+                .rtl, // <── Added this line to enforce right-to-left layout alignment
+          ),
           backgroundColor: AtlasColors.danger,
+          duration: Duration(
+            milliseconds: 1000,
+          ), // <── Added this line (Disappears in 1.5 seconds)
         ),
       );
     }
@@ -58,7 +68,9 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<void> _startNavigation(Building building) async {
     final url = Uri.parse(
-      'https://www.google.com/maps/dir/?api=1&destination=${building.latitude},${building.longitude}&travelmode=driving',
+      'https://www.google.com/maps/dir/?api=1'
+      '&destination=${building.latitude},${building.longitude}'
+      '&travelmode=driving',
     );
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
@@ -81,15 +93,19 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  // ── Build ─────────────────────────────────────────────────────────────────
+
   @override
   Widget build(BuildContext context) {
+    final d = AppDimensions(context);
+
     return Consumer<AtlasSearchProvider>(
       builder: (context, search, _) {
         return Scaffold(
           backgroundColor: AtlasColors.background,
           body: Stack(
             children: [
-              // Map
+              // ── Full-screen map ─────────────────────────────────────────
               Positioned.fill(
                 child: AtlasMap(
                   buildings: search.results,
@@ -101,15 +117,21 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
 
-              // Control panel
+              // ── Control panel (top) ─────────────────────────────────────
               SafeArea(
-                child: Column(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.all(12),
+                // bottom: false — we handle the bottom separately via Footer.
+                bottom: false,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: ConstrainedBox(
+                    // On tablets / desktops the panel is capped at 480 dp so
+                    // it doesn't stretch across a 1280-dp desktop window.
+                    constraints: const BoxConstraints(maxWidth: 480),
+                    child: Container(
+                      margin: EdgeInsets.all(d.paddingM),
                       decoration: BoxDecoration(
                         color: AtlasColors.surface,
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(d.borderRadius),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withOpacity(0.3),
@@ -119,14 +141,15 @@ class _MainScreenState extends State<MainScreen> {
                         ],
                       ),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           const AtlasAppBar(),
-                          const SizedBox(height: 12),
+                          SizedBox(height: d.paddingM),
                           AtlasSearchBar(
                             controller: _searchController,
                             onSearch: _onSearch,
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: d.paddingS),
                           FeaturedBuildings(
                             buildings: _featuredBuildings,
                             onTap: (number) {
@@ -137,14 +160,17 @@ class _MainScreenState extends State<MainScreen> {
                         ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
 
-              // Map controls
+              // ── Map control buttons (right edge) ────────────────────────
+              // bottom is positioned above the footer height so controls are
+              // never hidden behind it.
               Positioned(
-                right: 12,
-                bottom: 60,
+                right: d.paddingM,
+                // Footer height ≈ 40 dp; add a small gap.
+                bottom: 48 + d.paddingM,
                 child: MapControls(
                   onMyLocation: _onMyLocation,
                   onCenter: () async =>
@@ -160,20 +186,27 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
 
-              // Loading overlay for my location
+              // ── Location loading overlay ────────────────────────────────
               if (_isLocating)
                 Positioned.fill(
-                  child: Container(
+                  child: ColoredBox(
                     color: Colors.black.withOpacity(0.4),
-                    child: const Center(
+                    child: Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          CircularProgressIndicator(color: Colors.green),
-                          SizedBox(height: 16),
+                          const CircularProgressIndicator(
+                            color: AtlasColors.primary,
+                          ),
+                          SizedBox(height: d.paddingL),
                           Text(
                             'جارٍ تحديد موقعك...',
-                            style: TextStyle(color: Colors.white, fontSize: 14),
+                            textDirection: TextDirection
+                                .rtl, // Keeps '...' safely on the left end
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: d.fontM,
+                            ),
                           ),
                         ],
                       ),
@@ -181,7 +214,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
 
-              // Footer
+              // ── Footer (bottom) ─────────────────────────────────────────
               const Positioned(
                 bottom: 0,
                 left: 0,
@@ -195,33 +228,28 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  // ── Lifecycle ─────────────────────────────────────────────────────────────
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final searchProvider = context.read<AtlasSearchProvider>();
+      searchProvider.selectDefaultProjectIfNone();
+      if (searchProvider.selectedProject != null) setState(() {});
+    });
+  }
+
   @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-    // Schedule a callback after the frame builds to safely update the provider state
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final searchProvider = context.read<AtlasSearchProvider>();
-      searchProvider.selectDefaultProjectIfNone();
-
-      // Optional: If you want to populate your featured buildings or map
-      // immediately based on that default project, you can trigger it here:
-      if (searchProvider.selectedProject != null) {
-        setState(() {
-          // e.g., update map position or local screen states if necessary
-        });
-      }
-    });
-  }
+  // ── Location ──────────────────────────────────────────────────────────────
 
   Future<void> _onMyLocation() async {
-    setState(() => _isLocating = true); // ← show loading
+    setState(() => _isLocating = true);
 
     try {
       LocationPermission permission = await Geolocator.checkPermission();
@@ -240,10 +268,9 @@ class _MainScreenState extends State<MainScreen> {
       setState(() {
         _userLocation = LatLng(position.latitude, position.longitude);
       });
-
       _mapController.move(_userLocation!, 17);
     } finally {
-      setState(() => _isLocating = false); // ← hide loading always
+      setState(() => _isLocating = false);
     }
   }
 }

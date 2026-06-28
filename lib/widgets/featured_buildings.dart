@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
+import 'package:district_navigation_app/themes/app_dimensions.dart';
 
 class FeaturedBuildings extends StatelessWidget {
   final List<String> buildings;
@@ -13,31 +14,46 @@ class FeaturedBuildings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final d = AppDimensions(context);
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+      padding: EdgeInsets.fromLTRB(d.paddingM, 0, d.paddingM, d.paddingM),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // ── Scrollable chip list — takes remaining space ─────────────────
+          // Expanded + SingleChildScrollView is the canonical Flutter pattern
+          // for a horizontal list that must not overflow its parent Row.
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              // reverse: true keeps the first chip at the right for RTL UX.
               reverse: true,
               child: Row(
                 children: buildings.map((number) {
                   return Padding(
-                    padding: const EdgeInsets.only(left: 8),
+                    padding: EdgeInsets.only(left: d.paddingS),
                     child: _FeaturedChip(
                       label: 'عمارة $number',
                       onTap: () => onTap(number),
+                      d: d,
                     ),
                   );
                 }).toList(),
               ),
             ),
           ),
-          const SizedBox(width: 8),
-          const Text(
+          SizedBox(width: d.paddingS),
+
+          // ── Label — fixed, never pushed out ─────────────────────────────
+          // No Flexible needed here because Expanded above already consumed
+          // all remaining space; this Text only needs its intrinsic width.
+          Text(
             ':البنايات المميزة',
-            style: TextStyle(color: AtlasColors.textSecondary, fontSize: 12),
+            style: TextStyle(
+              color: AtlasColors.textSecondary,
+              fontSize: d.fontS,
+            ),
           ),
         ],
       ),
@@ -45,26 +61,36 @@ class FeaturedBuildings extends StatelessWidget {
   }
 }
 
+// ─── Individual chip ─────────────────────────────────────────────────────────
+
 class _FeaturedChip extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
+  final AppDimensions d;
 
-  const _FeaturedChip({required this.label, required this.onTap});
+  const _FeaturedChip({
+    required this.label,
+    required this.onTap,
+    required this.d,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        padding: EdgeInsets.symmetric(
+          horizontal: d.paddingM,
+          vertical: d.paddingS,
+        ),
         decoration: BoxDecoration(
           color: AtlasColors.surfaceLight,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(d.borderRadius),
           border: Border.all(color: AtlasColors.chipBorder),
         ),
         child: Text(
           label,
-          style: const TextStyle(color: AtlasColors.textPrimary, fontSize: 12),
+          style: TextStyle(color: AtlasColors.textPrimary, fontSize: d.fontS),
         ),
       ),
     );
