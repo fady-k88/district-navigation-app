@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
+import 'package:district_navigation_app/services/url_launch/url_launcher_service.dart';
 
 class AtlasFooter extends StatelessWidget {
   const AtlasFooter({super.key});
@@ -42,7 +43,11 @@ class AtlasFooter extends StatelessWidget {
           // ── "User guide" link (Positions on the Left Side) ─────────────────
           Flexible(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                UrlLauncherService.launchURL(
+                  "https://atlas-hadayek-october.pages.dev",
+                );
+              },
               child: Text(
                 'دليل الاستخدام الفني',
                 textDirection: TextDirection
