@@ -1,7 +1,10 @@
+// widgets/building_bottom_sheet.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:district_navigation_app/models/building.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
+import 'package:district_navigation_app/providers/settings_provider.dart';
 
 class BuildingBottomSheet extends StatefulWidget {
   final Building building;
@@ -26,17 +29,12 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
   Widget build(BuildContext context) {
     final d = AppDimensions(context);
     final b = widget.building;
+    final settings = context.watch<SettingsProvider>();
 
-    // ── The sheet wraps its content in a scrollable column so it never
-    //    overflows on a very small screen (e.g. 640 × 360 landscape).
-    //    On normal screens mainAxisSize.min keeps it compact.
     return SafeArea(
-      // bottom: false keeps our own paddingXL in control of the bottom gap.
       bottom: false,
       child: Container(
-        // Horizontal margin so the sheet floats slightly off the edges.
         margin: EdgeInsets.fromLTRB(d.paddingM, 0, d.paddingM, d.paddingM),
-        // Cap height at 85 % of the viewport so it never covers the map header.
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height * 0.85,
         ),
@@ -44,8 +42,6 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
           color: AtlasColors.surface,
           borderRadius: BorderRadius.circular(d.borderRadius),
         ),
-        // SingleChildScrollView allows content to scroll on very short screens
-        // instead of producing a pixel-overflow stripe.
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -55,7 +51,6 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
               // ── Drag handle ───────────────────────────────────────────────
               Center(
                 child: Container(
-                  // Fixed physical size — readable on every screen density.
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
@@ -67,18 +62,13 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
               SizedBox(height: d.paddingL),
 
               // ── Header row ────────────────────────────────────────────────
-              // ── Header row ────────────────────────────────────────────────
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: d.paddingL),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Close button — fixed square, minimum 32 dp touch target.
                     _CloseButton(d: d, onClose: widget.onClose),
-
-                    // Gives a safe minimum buffer between the button and the text on tiny devices
                     SizedBox(width: d.paddingM),
-                    // keeping the text forced to the absolute right side.
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -101,7 +91,7 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
-                              color: AtlasColors.primary,
+                              color: settings.accentColor,
                               fontSize: d.fontM,
                             ),
                           ),
@@ -142,7 +132,6 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
                   ),
                 ),
               ),
-
               SizedBox(height: d.paddingL),
 
               // ── Navigation button ─────────────────────────────────────────
@@ -154,7 +143,7 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: _navigating
                           ? AtlasColors.danger
-                          : AtlasColors.primary,
+                          : settings.accentColor,
                       padding: EdgeInsets.symmetric(vertical: d.paddingM),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(d.borderRadiusS),
@@ -190,9 +179,6 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
               SizedBox(height: d.paddingM),
 
               // ── Ad placeholder ────────────────────────────────────────────
-              // Fixed 56 dp height instead of 8 % of screen height —
-              // screenHeight * 0.08 on a tall tablet was 85 dp, wasting space;
-              // on a small landscape phone it was only 43 dp, too tight.
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: d.paddingL),
                 child: Container(
@@ -213,7 +199,6 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
                 ),
               ),
 
-              // Extra bottom padding — respects system navigation bar.
               SizedBox(
                 height: d.paddingXL + MediaQuery.of(context).padding.bottom,
               ),
@@ -230,12 +215,10 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
 class _CloseButton extends StatelessWidget {
   final AppDimensions d;
   final VoidCallback onClose;
-
   const _CloseButton({required this.d, required this.onClose});
 
   @override
   Widget build(BuildContext context) {
-    // Use a fixed 36 dp button — it always fits regardless of screen size.
     const double size = 36;
     return GestureDetector(
       onTap: onClose,
@@ -257,13 +240,12 @@ class _CloseButton extends StatelessWidget {
   }
 }
 
-// ─── Coordinate row ──────────────────────────────────────────────────────────
+// ─── Coordinate row ───────────────────────────────────────────────────────────
 
 class _CoordRow extends StatelessWidget {
   final String label;
   final String value;
   final AppDimensions d;
-
   const _CoordRow({required this.label, required this.value, required this.d});
 
   @override
@@ -271,7 +253,6 @@ class _CoordRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // Value may be a 9-digit float; Flexible lets it shrink with ellipsis.
         Flexible(
           child: Text(
             value,

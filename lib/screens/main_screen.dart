@@ -1,3 +1,4 @@
+// screens/main_screen.dart
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ import 'package:district_navigation_app/widgets/atlas_search_bar.dart';
 import 'package:district_navigation_app/widgets/featured_buildings.dart';
 import 'package:district_navigation_app/widgets/building_bottom_sheet.dart';
 import 'package:district_navigation_app/providers/atlas_search_provider.dart';
+import 'package:district_navigation_app/providers/settings_provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -31,7 +33,6 @@ class _MainScreenState extends State<MainScreen> {
   bool _isLocating = false;
 
   static const LatLng _districtCenter = LatLng(29.9117, 30.9696);
-  final List<String> _featuredBuildings = ['45', '104', '5'];
 
   // ── Navigation ────────────────────────────────────────────────────────────
 
@@ -54,13 +55,10 @@ class _MainScreenState extends State<MainScreen> {
         const SnackBar(
           content: Text(
             'لم يتم العثور على العمارة',
-            textDirection: TextDirection
-                .rtl, // <── Added this line to enforce right-to-left layout alignment
+            textDirection: TextDirection.rtl,
           ),
           backgroundColor: AtlasColors.danger,
-          duration: Duration(
-            milliseconds: 1000,
-          ), // <── Added this line (Disappears in 1.5 seconds)
+          duration: Duration(milliseconds: 1000),
         ),
       );
     }
@@ -99,13 +97,16 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final d = AppDimensions(context);
 
-    return Consumer<AtlasSearchProvider>(
-      builder: (context, search, _) {
+    return Consumer2<AtlasSearchProvider, SettingsProvider>(
+      builder: (context, search, settings, _) {
+        // Featured buildings are now pulled live from SettingsProvider
+        final featuredBuildings = settings.featuredBuildings;
+
         return Scaffold(
           backgroundColor: AtlasColors.background,
           body: Stack(
             children: [
-              // ── Full-screen map ─────────────────────────────────────────
+              // ── Full-screen map ───────────────────────────────────────────
               Positioned.fill(
                 child: AtlasMap(
                   buildings: search.results,
@@ -117,15 +118,12 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
 
-              // ── Control panel (top) ─────────────────────────────────────
+              // ── Control panel (top) ───────────────────────────────────────
               SafeArea(
-                // bottom: false — we handle the bottom separately via Footer.
                 bottom: false,
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: ConstrainedBox(
-                    // On tablets / desktops the panel is capped at 480 dp so
-                    // it doesn't stretch across a 1280-dp desktop window.
                     constraints: const BoxConstraints(maxWidth: 480),
                     child: Container(
                       margin: EdgeInsets.all(d.paddingM),
@@ -151,7 +149,7 @@ class _MainScreenState extends State<MainScreen> {
                           ),
                           SizedBox(height: d.paddingS),
                           FeaturedBuildings(
-                            buildings: _featuredBuildings,
+                            buildings: featuredBuildings,
                             onTap: (number) {
                               _searchController.text = number;
                               _onSearch();
@@ -164,12 +162,9 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
 
-              // ── Map control buttons (right edge) ────────────────────────
-              // bottom is positioned above the footer height so controls are
-              // never hidden behind it.
+              // ── Map control buttons (right edge) ──────────────────────────
               Positioned(
                 right: d.paddingM,
-                // Footer height ≈ 40 dp; add a small gap.
                 bottom: 48 + d.paddingM,
                 child: MapControls(
                   onMyLocation: _onMyLocation,
@@ -186,7 +181,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
 
-              // ── Location loading overlay ────────────────────────────────
+              // ── Location loading overlay ──────────────────────────────────
               if (_isLocating)
                 Positioned.fill(
                   child: ColoredBox(
@@ -195,14 +190,13 @@ class _MainScreenState extends State<MainScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const CircularProgressIndicator(
-                            color: AtlasColors.primary,
+                          CircularProgressIndicator(
+                            color: settings.accentColor,
                           ),
                           SizedBox(height: d.paddingL),
                           Text(
                             'جارٍ تحديد موقعك...',
-                            textDirection: TextDirection
-                                .rtl, // Keeps '...' safely on the left end
+                            textDirection: TextDirection.rtl,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: d.fontM,
@@ -214,7 +208,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ),
 
-              // ── Footer (bottom) ─────────────────────────────────────────
+              // ── Footer (bottom) ───────────────────────────────────────────
               const Positioned(
                 bottom: 0,
                 left: 0,

@@ -1,6 +1,10 @@
+// widgets/atlas_app_bar.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
+import 'package:district_navigation_app/providers/settings_provider.dart';
+import 'package:district_navigation_app/widgets/settings_bottom_sheet.dart';
 
 class AtlasAppBar extends StatelessWidget {
   const AtlasAppBar({super.key});
@@ -8,12 +12,12 @@ class AtlasAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final d = AppDimensions(context);
+    final accentColor = context.watch<SettingsProvider>().accentColor;
 
     return Padding(
       padding: EdgeInsets.fromLTRB(d.paddingM, d.paddingM, d.paddingM, 0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
-        // Distributes space evenly between the left actions group and the right title
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -30,8 +34,9 @@ class AtlasAppBar extends StatelessWidget {
                     width: d.compassSize,
                     height: d.compassSize,
                     child: DecoratedBox(
-                      decoration: const BoxDecoration(
-                        color: AtlasColors.primary,
+                      decoration: BoxDecoration(
+                        // Compass circle uses the live accent color
+                        color: accentColor,
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
@@ -46,12 +51,19 @@ class AtlasAppBar extends StatelessWidget {
               SizedBox(width: d.paddingS),
               _ToolbarIcon(icon: Icons.info_outline, onTap: () {}, d: d),
               SizedBox(width: d.paddingS * 0.75),
-              _ToolbarIcon(icon: Icons.tune, active: true, onTap: () {}, d: d),
+              // ── Tune button now opens the settings sheet ──────────────────
+              _ToolbarIcon(
+                icon: Icons.tune,
+                active: true,
+                onTap: () => settings_bottom_sheet.show(context),
+                d: d,
+              ),
             ],
           ),
 
-          SizedBox(width: d.paddingM), // Guaranteed minimum breathing room gap
-          // ── Right Side: App Title (Demands all remaining viewport width) ──
+          SizedBox(width: d.paddingM),
+
+          // ── Right Side: App Title ─────────────────────────────────────────
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -102,17 +114,19 @@ class AtlasAppBar extends StatelessWidget {
   }
 }
 
-// ─── Private toolbar icon button ────────────────────────────────────────────
+// ─── Private toolbar icon button ─────────────────────────────────────────────
 
 class _ToolbarIcon extends StatelessWidget {
   final IconData icon;
   final bool active;
+  final Color? accentColor; // optional — only provided for the active button
   final VoidCallback onTap;
   final AppDimensions d;
 
   const _ToolbarIcon({
     required this.icon,
     this.active = false,
+    this.accentColor,
     required this.onTap,
     required this.d,
   });
@@ -120,6 +134,10 @@ class _ToolbarIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(d.borderRadiusS * 0.8);
+    // Use the live accent color when provided, fall back to atlas amber
+    final bg = active
+        ? (accentColor ?? AtlasColors.accent)
+        : AtlasColors.surfaceLight;
 
     return Material(
       type: MaterialType.transparency,
@@ -131,7 +149,7 @@ class _ToolbarIcon extends StatelessWidget {
           height: d.toolbarIconSize,
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: active ? AtlasColors.accent : AtlasColors.surfaceLight,
+              color: bg,
               borderRadius: borderRadius,
               border: Border.all(color: AtlasColors.chipBorder),
             ),
