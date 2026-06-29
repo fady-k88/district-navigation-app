@@ -11,7 +11,6 @@ class AtlasFooter extends StatelessWidget {
     final d = AppDimensions(context);
 
     return Container(
-      // Adds bottom padding equal to the system navigation-bar height
       padding: EdgeInsets.fromLTRB(
         d.paddingL,
         d.paddingS,
@@ -20,17 +19,14 @@ class AtlasFooter extends StatelessWidget {
       ),
       color: AtlasColors.surface.withOpacity(0.95),
       child: Row(
-        // Pushes the copyright to the far right side and the guide link to the far left side
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        textDirection: TextDirection
-            .rtl, // Mirrors the Row children positioning logic for RTL layout mapping
+        textDirection: TextDirection.rtl,
         children: [
-          // ── Copyright (Positions on the Right Side) ────────────────────────
+          // ── Copyright ─────────────────────────────────────────────────────
           Flexible(
             child: Text(
               'أطلس حدائق أكتوبر © 2026',
-              textDirection: TextDirection
-                  .rtl, // Safe-guards numbers and copyright glyph sequence parsing
+              textDirection: TextDirection.rtl,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(
@@ -40,25 +36,35 @@ class AtlasFooter extends StatelessWidget {
             ),
           ),
 
-          // ── "User guide" link (Positions on the Left Side) ─────────────────
+          // ── User guide link ───────────────────────────────────────────────
           Flexible(
-            child: GestureDetector(
-              onTap: () {
-                UrlLauncherService.launchURL(
-                  "https://atlas-hadayek-october.pages.dev",
-                );
-              },
-              child: Text(
-                'دليل الاستخدام الفني',
-                textDirection: TextDirection
-                    .rtl, // Forces proper internal glyph rendering directionality
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: TextStyle(
-                  color: AtlasColors.primary,
-                  fontSize: d.fontS,
-                  decoration: TextDecoration.underline,
-                  decorationColor: AtlasColors.primary,
+            child: MouseRegion(
+              // Changes cursor to a hand pointer on desktop/web hover
+              cursor: SystemMouseCursors.click,
+              child: InkWell(
+                // Provides tap sound and ripple feedback on mobile
+                onTap: () => UrlLauncherService.launchURL(
+                  'https://atlas-hadayek-october.pages.dev',
+                ),
+                borderRadius: BorderRadius.circular(d.borderRadiusS * 0.5),
+                child: Padding(
+                  // Small padding so the ripple doesn't clip the text edges
+                  padding: EdgeInsets.symmetric(
+                    horizontal: d.paddingXS,
+                    vertical: d.paddingXS * 0.5,
+                  ),
+                  child: Text(
+                    'دليل الاستخدام الفني',
+                    textDirection: TextDirection.rtl,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: AtlasColors.primary,
+                      fontSize: d.fontS,
+                      decoration: TextDecoration.underline,
+                      decorationColor: AtlasColors.primary,
+                    ),
+                  ),
                 ),
               ),
             ),
