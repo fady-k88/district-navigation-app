@@ -177,7 +177,7 @@ class SettingsProvider extends ChangeNotifier {
     _accentColor = v;
     notifyListeners();
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_kAccentColor, v.value);
+    await prefs.setInt(_kAccentColor, v.toARGB32());
   }
 
   Future<void> setFeaturedBuildings(List<String> v) async {
