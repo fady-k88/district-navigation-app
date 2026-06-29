@@ -119,9 +119,11 @@ class InfoSheet extends StatelessWidget {
                         vertical: d.paddingXS,
                       ),
                       decoration: BoxDecoration(
-                        color: accentColor.withOpacity(0.15),
+                        color: accentColor.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(d.borderRadius),
-                        border: Border.all(color: accentColor.withOpacity(0.3)),
+                        border: Border.all(
+                          color: accentColor.withValues(alpha: 0.3),
+                        ),
                       ),
                       child: Text(
                         'الإصدار $_version',
@@ -261,7 +263,7 @@ class _InfoRow extends StatelessWidget {
               width: d.compassSize,
               height: d.compassSize,
               decoration: BoxDecoration(
-                color: accentColor.withOpacity(0.15),
+                color: accentColor.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(d.borderRadiusS * 0.7),
               ),
               child: Icon(icon, color: accentColor, size: d.iconS),

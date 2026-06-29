@@ -17,7 +17,7 @@ class AtlasFooter extends StatelessWidget {
         d.paddingL,
         d.paddingS,
       ),
-      color: AtlasColors.surface.withOpacity(0.95),
+      color: AtlasColors.surface.withValues(alpha: 0.95),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         textDirection: TextDirection.rtl,

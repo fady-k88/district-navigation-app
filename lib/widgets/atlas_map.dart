@@ -72,7 +72,7 @@ class AtlasMap extends StatelessWidget {
                 height: 40,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.green.withOpacity(0.2),
+                    color: Colors.green.withValues(alpha: 0.2),
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.green, width: 2),
                   ),
@@ -110,7 +110,7 @@ class AtlasMap extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 2),
             boxShadow: [
-              BoxShadow(color: color.withOpacity(0.5), blurRadius: 4),
+              BoxShadow(color: color.withValues(alpha: 0.5), blurRadius: 4),
             ],
           ),
         );

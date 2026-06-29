@@ -312,7 +312,7 @@ class _AccentColorPicker extends StatelessWidget {
                   boxShadow: isSelected
                       ? [
                           BoxShadow(
-                            color: opt.color.withOpacity(0.6),
+                            color: opt.color.withValues(alpha: 0.6),
                             blurRadius: 10,
                             spreadRadius: 1,
                           ),
