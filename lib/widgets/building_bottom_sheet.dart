@@ -5,6 +5,7 @@ import 'package:district_navigation_app/models/building.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
 import 'package:district_navigation_app/providers/settings_provider.dart';
+import 'package:district_navigation_app/widgets/banner_ad_widget.dart';
 
 class BuildingBottomSheet extends StatefulWidget {
   final Building building;
@@ -179,26 +180,11 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
               SizedBox(height: d.paddingM),
 
               // ── Ad placeholder ────────────────────────────────────────────
+              // ── Banner Ad ─────────────────────────────────────────────────────────────
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: d.paddingL),
-                child: Container(
-                  width: double.infinity,
-                  height: 56,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(d.borderRadiusS),
-                    border: Border.all(color: AtlasColors.chipBorder),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'مساحة إعلانية',
-                    style: TextStyle(
-                      color: AtlasColors.textSecondary,
-                      fontSize: d.fontM,
-                    ),
-                  ),
-                ),
+                child: const BannerAdWidget(),
               ),
-
               SizedBox(
                 height: d.paddingXL + MediaQuery.of(context).padding.bottom,
               ),
