@@ -2,6 +2,7 @@
 import 'package:district_navigation_app/app/district_navigation_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:district_navigation_app/repositories/atlas_repository.dart';
 import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
@@ -16,6 +17,9 @@ import 'package:district_navigation_app/services/atlas_sync/hash_comparison_serv
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ── Initialize AdMob before anything else ──────────────────────────────
+  await MobileAds.instance.initialize();
 
   // ── Load persisted settings before the first frame ──────────────────────
   final settingsProvider = SettingsProvider();
