@@ -5,8 +5,8 @@ import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
 import 'package:district_navigation_app/providers/settings_provider.dart';
 
-class settings_bottom_sheet extends StatefulWidget {
-  const settings_bottom_sheet({super.key});
+class SettingsBottomSheet extends StatefulWidget {
+  const SettingsBottomSheet({super.key});
 
   static void show(BuildContext context) {
     showModalBottomSheet(
@@ -15,16 +15,16 @@ class settings_bottom_sheet extends StatefulWidget {
       isScrollControlled: true,
       builder: (_) => ChangeNotifierProvider.value(
         value: context.read<SettingsProvider>(),
-        child: const settings_bottom_sheet(),
+        child: const SettingsBottomSheet(),
       ),
     );
   }
 
   @override
-  State<settings_bottom_sheet> createState() => _SettingsSheetState();
+  State<SettingsBottomSheet> createState() => _SettingsSheetState();
 }
 
-class _SettingsSheetState extends State<settings_bottom_sheet> {
+class _SettingsSheetState extends State<SettingsBottomSheet> {
   late TextEditingController _featuredCtrl;
 
   @override
