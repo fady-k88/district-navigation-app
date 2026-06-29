@@ -12,7 +12,6 @@ class KmlParserService implements IKmlParserService {
     for (final folder in document.findAllElements('Folder')) {
       final project =
           folder.findElements('name').firstOrNull?.innerText.trim() ?? '';
-      print(project);
       for (final placemark in folder.findAllElements('Placemark')) {
         final id = placemark.getAttribute('id');
         final name = placemark
