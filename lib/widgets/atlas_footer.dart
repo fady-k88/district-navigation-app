@@ -15,7 +15,7 @@ class AtlasFooter extends StatelessWidget {
         d.paddingL,
         d.paddingS,
         d.paddingL,
-        d.paddingS + MediaQuery.of(context).padding.bottom,
+        d.paddingS,
       ),
       color: AtlasColors.surface.withOpacity(0.95),
       child: Row(
@@ -39,16 +39,13 @@ class AtlasFooter extends StatelessWidget {
           // ── User guide link ───────────────────────────────────────────────
           Flexible(
             child: MouseRegion(
-              // Changes cursor to a hand pointer on desktop/web hover
               cursor: SystemMouseCursors.click,
               child: InkWell(
-                // Provides tap sound and ripple feedback on mobile
                 onTap: () => UrlLauncherService.launchURL(
                   'https://atlas-hadayek-october.pages.dev',
                 ),
                 borderRadius: BorderRadius.circular(d.borderRadiusS * 0.5),
                 child: Padding(
-                  // Small padding so the ripple doesn't clip the text edges
                   padding: EdgeInsets.symmetric(
                     horizontal: d.paddingXS,
                     vertical: d.paddingXS * 0.5,
