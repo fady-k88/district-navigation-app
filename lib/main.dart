@@ -1,6 +1,7 @@
 // main.dart
 import 'package:district_navigation_app/app/district_navigation_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:district_navigation_app/repositories/atlas_repository.dart';
 import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
@@ -47,4 +48,6 @@ void main() async {
       child: const DistrictNavigationApp(),
     ),
   );
+  // Remove the native splash immediately after Flutter starts
+  FlutterNativeSplash.remove();
 }
