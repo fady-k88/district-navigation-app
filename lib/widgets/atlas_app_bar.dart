@@ -61,7 +61,7 @@ class AtlasAppBar extends StatelessWidget {
               _ToolbarIcon(
                 icon: Icons.tune,
                 active: true,
-                onTap: () => settings_bottom_sheet.show(context),
+                onTap: () => SettingsBottomSheet.show(context),
                 d: d,
               ),
             ],
