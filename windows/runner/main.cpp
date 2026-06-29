@@ -27,7 +27,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   FlutterWindow window(project);
   Win32Window::Point origin(10, 10);
   Win32Window::Size size(1280, 720);
-  if (!window.Create(L"district_navigation_app", origin, size)) {
+  if (!window.Create(L"\u0623\u0637\u0644\u0633 \u062D\u062F\u0627\u0626\u0642 \u0623\u0643\u062A\u0648\u0628\u0631", origin, size)) {
     return EXIT_FAILURE;
   }
   window.SetQuitOnClose(true);
