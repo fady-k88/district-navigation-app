@@ -13,6 +13,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDummyKey1234567890" />
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7153199569295474~2623116298"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
