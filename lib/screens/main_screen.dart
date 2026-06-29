@@ -91,7 +91,7 @@ class _MainScreenState extends State<MainScreen> {
       ),
     ).whenComplete(() {
       // Sheet closed — reload ad for next building tap
-      context.read<AdProvider>().reloadAfterUse();
+      context.read<AdProvider>().reloadSlot(AdSlot.buildingSheet);
     });
   }
   // ── Build ─────────────────────────────────────────────────────────────────

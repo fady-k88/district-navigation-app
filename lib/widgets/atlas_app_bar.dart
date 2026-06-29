@@ -1,4 +1,5 @@
 // widgets/atlas_app_bar.dart
+import 'package:district_navigation_app/providers/ad_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:district_navigation_app/widgets/info_sheet.dart';
@@ -53,7 +54,11 @@ class AtlasAppBar extends StatelessWidget {
               SizedBox(width: d.paddingS),
               _ToolbarIcon(
                 icon: Icons.info_outline,
-                onTap: () => InfoSheet.show(context),
+                onTap: () {
+                  InfoSheet.show(context).whenComplete(() {
+                    context.read<AdProvider>().reloadSlot(AdSlot.infoSheet);
+                  });
+                },
                 d: d,
               ),
               SizedBox(width: d.paddingS * 0.75),
@@ -61,7 +66,11 @@ class AtlasAppBar extends StatelessWidget {
               _ToolbarIcon(
                 icon: Icons.tune,
                 active: true,
-                onTap: () => SettingsBottomSheet.show(context),
+                onTap: () {
+                  SettingsBottomSheet.show(context).whenComplete(() {
+                    context.read<AdProvider>().reloadSlot(AdSlot.settingsSheet);
+                  });
+                },
                 d: d,
               ),
             ],

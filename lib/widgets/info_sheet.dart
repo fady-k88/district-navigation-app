@@ -1,4 +1,6 @@
 // widgets/info_sheet.dart
+import 'package:district_navigation_app/providers/ad_provider.dart';
+import 'package:district_navigation_app/widgets/banner_ad_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +12,8 @@ import 'package:district_navigation_app/providers/settings_provider.dart';
 class InfoSheet extends StatelessWidget {
   const InfoSheet({super.key});
 
-  static void show(BuildContext context) {
-    showModalBottomSheet(
+  static Future<void> show(BuildContext context) {
+    return showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -187,8 +189,15 @@ class InfoSheet extends StatelessWidget {
                 ),
               ),
 
+              // ── Banner Ad ──────────────────────────────────────────────────────────
+              SizedBox(height: d.paddingM),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: d.paddingL),
+                child: const BannerAdWidget(slot: AdSlot.infoSheet),
+              ),
+
               SizedBox(
-                height: d.paddingXL + MediaQuery.of(context).padding.bottom,
+                height: d.paddingM + MediaQuery.of(context).padding.bottom,
               ),
             ],
           ),

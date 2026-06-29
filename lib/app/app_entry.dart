@@ -36,12 +36,14 @@ class _AppEntryState extends State<AppEntry> {
             message: sync.errorMessage ?? '',
           );
         } else if (sync.isReady) {
-          // Preload the ad now that the app is fully ready
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.read<AdProvider>().preloadBanner();
-          });
-
           child = const MainScreen(key: ValueKey('main'));
+          // Guard against multiple calls — only preload if not already loaded
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            final adProvider = context.read<AdProvider>();
+            if (!adProvider.isLoaded(AdSlot.buildingSheet)) {
+              adProvider.preloadAll();
+            }
+          });
         } else {
           child = const LoadingScreen(key: ValueKey('loading'));
         }

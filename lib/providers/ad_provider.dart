@@ -3,47 +3,65 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:district_navigation_app/services/ads/ad_service.dart';
 
+enum AdSlot { buildingSheet, infoSheet, settingsSheet }
+
 class AdProvider extends ChangeNotifier {
-  BannerAd? _bannerAd;
-  bool _isLoaded = false;
+  final Map<AdSlot, BannerAd?> _ads = {};
+  final Map<AdSlot, bool> _loaded = {};
 
-  bool get isLoaded => _isLoaded;
-  BannerAd? get bannerAd => _bannerAd;
+  bool isLoaded(AdSlot slot) => _loaded[slot] ?? false;
+  BannerAd? bannerAd(AdSlot slot) => _ads[slot];
 
-  // Call this once when the app is ready — loads ad in background immediately
-  void preloadBanner() {
-    _bannerAd = BannerAd(
+  // ── Preload a specific slot ──────────────────────────────────────────────
+  void preloadBanner(AdSlot slot) {
+    _ads[slot]?.dispose();
+    _ads[slot] = null;
+    _loaded[slot] = false;
+
+    final ad = BannerAd(
       adUnitId: AdService.bannerAdUnitId,
       size: AdSize.largeBanner,
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (_) {
-          _isLoaded = true;
+          _loaded[slot] = true;
           notifyListeners();
         },
         onAdFailedToLoad: (ad, error) {
           ad.dispose();
-          _bannerAd = null;
-          _isLoaded = false;
-          // Wait 30 seconds then retry silently
-          Future.delayed(const Duration(seconds: 30), preloadBanner);
+          _ads[slot] = null;
+          _loaded[slot] = false;
+          // Retry after 30 seconds silently
+          Future.delayed(
+            const Duration(seconds: 30),
+            () => preloadBanner(slot),
+          );
         },
       ),
     )..load();
+
+    _ads[slot] = ad;
   }
 
-  // Call this after the sheet closes to reload for the next building tap
-  void reloadAfterUse() {
-    _bannerAd?.dispose();
-    _bannerAd = null;
-    _isLoaded = false;
+  // ── Preload all slots at once ────────────────────────────────────────────
+  void preloadAll() {
+    for (final slot in AdSlot.values) {
+      preloadBanner(slot);
+    }
+  }
+
+  // ── Call after a sheet closes to refresh that slot ──────────────────────
+  void reloadSlot(AdSlot slot) {
+    _loaded[slot] = false;
     notifyListeners();
-    preloadBanner(); // immediately start loading next ad
+    preloadBanner(slot);
   }
 
   @override
   void dispose() {
-    _bannerAd?.dispose();
+    for (final ad in _ads.values) {
+      ad?.dispose();
+    }
     super.dispose();
   }
 }

@@ -7,15 +7,15 @@ import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
 
 class BannerAdWidget extends StatelessWidget {
-  const BannerAdWidget({super.key});
+  final AdSlot slot;
+  const BannerAdWidget({super.key, required this.slot});
 
   @override
   Widget build(BuildContext context) {
     final d = AppDimensions(context);
     final adProvider = context.watch<AdProvider>();
 
-    if (!adProvider.isLoaded || adProvider.bannerAd == null) {
-      // Placeholder — shown only during very first load or on failure
+    if (!adProvider.isLoaded(slot) || adProvider.bannerAd(slot) == null) {
       return Container(
         width: double.infinity,
         height: 100,
@@ -32,9 +32,9 @@ class BannerAdWidget extends StatelessWidget {
     }
 
     return SizedBox(
-      width: adProvider.bannerAd!.size.width.toDouble(),
-      height: adProvider.bannerAd!.size.height.toDouble(),
-      child: AdWidget(ad: adProvider.bannerAd!),
+      width: adProvider.bannerAd(slot)!.size.width.toDouble(),
+      height: adProvider.bannerAd(slot)!.size.height.toDouble(),
+      child: AdWidget(ad: adProvider.bannerAd(slot)!),
     );
   }
 }

@@ -1,4 +1,5 @@
 // widgets/building_bottom_sheet.dart
+import 'package:district_navigation_app/providers/ad_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:district_navigation_app/models/building.dart';
@@ -180,13 +181,14 @@ class _BuildingBottomSheetState extends State<BuildingBottomSheet> {
               SizedBox(height: d.paddingM),
 
               // ── Ad placeholder ────────────────────────────────────────────
-              // ── Banner Ad ─────────────────────────────────────────────────────────────
+              // ── Banner Ad ─────────────────────────────────────────────────────────
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: d.paddingL),
-                child: const BannerAdWidget(),
+                child: const BannerAdWidget(slot: AdSlot.buildingSheet),
               ),
+
               SizedBox(
-                height: d.paddingXL + MediaQuery.of(context).padding.bottom,
+                height: d.paddingM + MediaQuery.of(context).padding.bottom,
               ),
             ],
           ),

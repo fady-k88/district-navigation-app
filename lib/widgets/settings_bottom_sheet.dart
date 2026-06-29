@@ -1,4 +1,6 @@
 // widgets/settings_sheet.dart
+import 'package:district_navigation_app/providers/ad_provider.dart';
+import 'package:district_navigation_app/widgets/banner_ad_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
@@ -8,8 +10,8 @@ import 'package:district_navigation_app/providers/settings_provider.dart';
 class SettingsBottomSheet extends StatefulWidget {
   const SettingsBottomSheet({super.key});
 
-  static void show(BuildContext context) {
-    showModalBottomSheet(
+  static Future<void> show(BuildContext context) {
+    return showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -195,9 +197,13 @@ class _SettingsSheetState extends State<SettingsBottomSheet> {
                         onChanged: (v) => _onFeaturedChanged(v, settings),
                       ),
 
+                      // ── Banner Ad ────────────────────────────────────────────────────────
+                      SizedBox(height: d.paddingM),
+                      const BannerAdWidget(slot: AdSlot.settingsSheet),
+
                       SizedBox(
                         height:
-                            d.paddingXL + MediaQuery.of(context).padding.bottom,
+                            d.paddingM + MediaQuery.of(context).padding.bottom,
                       ),
                     ],
                   ),
