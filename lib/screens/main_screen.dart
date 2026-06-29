@@ -269,7 +269,6 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _onResetNorth() {
-    print("fuck");
     _mapController.rotate(0);
   }
 }
