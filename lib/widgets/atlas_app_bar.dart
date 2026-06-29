@@ -8,7 +8,8 @@ import 'package:district_navigation_app/providers/settings_provider.dart';
 import 'package:district_navigation_app/widgets/settings_bottom_sheet.dart';
 
 class AtlasAppBar extends StatelessWidget {
-  const AtlasAppBar({super.key});
+  final VoidCallback onCompassTap;
+  const AtlasAppBar({super.key, required this.onCompassTap});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class AtlasAppBar extends StatelessWidget {
               Material(
                 type: MaterialType.transparency,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: onCompassTap,
                   customBorder: const CircleBorder(),
                   child: SizedBox(
                     width: d.compassSize,

@@ -141,7 +141,7 @@ class _MainScreenState extends State<MainScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const AtlasAppBar(),
+                          AtlasAppBar(onCompassTap: _onResetNorth),
                           SizedBox(height: d.paddingM),
                           AtlasSearchBar(
                             controller: _searchController,
@@ -266,5 +266,10 @@ class _MainScreenState extends State<MainScreen> {
     } finally {
       setState(() => _isLocating = false);
     }
+  }
+
+  void _onResetNorth() {
+    print("fuck");
+    _mapController.rotate(0);
   }
 }
