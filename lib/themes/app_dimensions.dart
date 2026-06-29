@@ -20,12 +20,10 @@ class AppDimensions {
   // Raw constructor — for use in contexts where a BuildContext is unavailable
   // (e.g. inside a StatelessWidget initState or a service layer).
   AppDimensions.raw({
-    required double screenWidth,
-    required double screenHeight,
+    required this.screenWidth,
+    required this.screenHeight,
     double fontMultiplier = 1.0,
-  }) : screenWidth = screenWidth,
-       screenHeight = screenHeight,
-       _ref = screenWidth.clamp(0.0, 480.0),
+  }) : _ref = screenWidth.clamp(0.0, 480.0),
        _fontMultiplier = fontMultiplier;
 
   static double _readFontMultiplier(BuildContext context) {
