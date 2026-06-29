@@ -1,6 +1,6 @@
 {
-    "name": "district_navigation_app",
-    "short_name": "district_navigation_app",
+    "name": "أطلس حدائق أكتوبر",
+    "short_name": "أطلس حدائق أكتوبر",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
