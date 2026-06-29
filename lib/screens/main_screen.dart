@@ -1,4 +1,5 @@
 // screens/main_screen.dart
+import 'package:district_navigation_app/providers/ad_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
@@ -88,9 +89,11 @@ class _MainScreenState extends State<MainScreen> {
           setState(() => _selectedBuilding = null);
         },
       ),
-    );
+    ).whenComplete(() {
+      // Sheet closed — reload ad for next building tap
+      context.read<AdProvider>().reloadAfterUse();
+    });
   }
-
   // ── Build ─────────────────────────────────────────────────────────────────
 
   @override

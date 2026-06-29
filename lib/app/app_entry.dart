@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:district_navigation_app/providers/ad_provider.dart';
 import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
 import 'package:district_navigation_app/screens/loading_screen.dart';
 import 'package:district_navigation_app/screens/error_screen.dart';
@@ -35,6 +36,11 @@ class _AppEntryState extends State<AppEntry> {
             message: sync.errorMessage ?? '',
           );
         } else if (sync.isReady) {
+          // Preload the ad now that the app is fully ready
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.read<AdProvider>().preloadBanner();
+          });
+
           child = const MainScreen(key: ValueKey('main'));
         } else {
           child = const LoadingScreen(key: ValueKey('loading'));

@@ -1,62 +1,24 @@
 // widgets/ads/banner_ad_widget.dart
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:district_navigation_app/services/ads/ad_service.dart';
+import 'package:district_navigation_app/providers/ad_provider.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
 
-class BannerAdWidget extends StatefulWidget {
+class BannerAdWidget extends StatelessWidget {
   const BannerAdWidget({super.key});
-
-  @override
-  State<BannerAdWidget> createState() => _BannerAdWidgetState();
-}
-
-class _BannerAdWidgetState extends State<BannerAdWidget> {
-  BannerAd? _bannerAd;
-  bool _isLoaded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadAd();
-  }
-
-  void _loadAd() {
-    _bannerAd = BannerAd(
-      adUnitId: AdService.bannerAdUnitId,
-      size: AdSize.banner, // 320×50 — standard, non-intrusive
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (_) {
-          if (!mounted) return;
-          setState(() => _isLoaded = true);
-        },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-          _bannerAd = null;
-          // Silently fail — no error shown to user
-        },
-      ),
-    )..load();
-  }
-
-  @override
-  void dispose() {
-    _bannerAd?.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final d = AppDimensions(context);
+    final adProvider = context.watch<AdProvider>();
 
-    // While ad is loading or failed, show the same placeholder your
-    // building_bottom_sheet.dart already has — seamless fallback
-    if (!_isLoaded || _bannerAd == null) {
+    if (!adProvider.isLoaded || adProvider.bannerAd == null) {
+      // Placeholder — shown only during very first load or on failure
       return Container(
         width: double.infinity,
-        height: 56,
+        height: 100,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(d.borderRadiusS),
           border: Border.all(color: AtlasColors.chipBorder),
@@ -69,12 +31,10 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
       );
     }
 
-    // Ad loaded — render it in the exact same space
-    return Container(
-      width: _bannerAd!.size.width.toDouble(),
-      height: _bannerAd!.size.height.toDouble(),
-      alignment: Alignment.center,
-      child: AdWidget(ad: _bannerAd!),
+    return SizedBox(
+      width: adProvider.bannerAd!.size.width.toDouble(),
+      height: adProvider.bannerAd!.size.height.toDouble(),
+      child: AdWidget(ad: adProvider.bannerAd!),
     );
   }
 }

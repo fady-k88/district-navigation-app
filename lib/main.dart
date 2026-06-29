@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import 'package:district_navigation_app/providers/ad_provider.dart';
 import 'package:district_navigation_app/repositories/atlas_repository.dart';
 import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
 import 'package:district_navigation_app/providers/atlas_search_provider.dart';
@@ -41,6 +42,7 @@ void main() async {
       providers: [
         // Settings must be first — other widgets depend on it via context.watch
         ChangeNotifierProvider<SettingsProvider>.value(value: settingsProvider),
+        ChangeNotifierProvider(create: (_) => AdProvider()),
         ChangeNotifierProvider(
           create: (_) => AtlasSyncProvider(
             syncService: syncService,
