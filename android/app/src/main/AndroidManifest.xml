@@ -15,7 +15,8 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7153199569295474~2623116298"/>
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            <!-- ↑ This is Google's test App ID — safe to use during development -->
 
         <activity
             android:name=".MainActivity"
