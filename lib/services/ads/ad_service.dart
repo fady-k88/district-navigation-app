@@ -1,6 +1,5 @@
 // services/ads/ad_service.dart
 import 'dart:io';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdService {
   AdService._(); // prevent instantiation — static only
