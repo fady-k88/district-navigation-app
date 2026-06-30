@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سياسة الخصوصية — أطلس حدائق أكتوبر</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #1A1A2E;
+      --surface:      #16213E;
+      --surface-lt:   #1F2B47;
+      --primary:      #2ECC71;
+      --primary-dim:  rgba(46,204,113,.15);
+      --primary-glow: rgba(46,204,113,.35);
+      --accent:       #F39C12;
+      --danger:       #E74C3C;
+      --text:         #FFFFFF;
+      --text-sec:     #A0A0B0;
+      --border:       #3A4A6B;
+      --radius:       16px;
+      --radius-s:     10px;
+      --font:         'Cairo', sans-serif;
+      --nav-w:        260px;
+      --transition:   .25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    ::selection { background: var(--primary-dim); color: var(--primary); }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+    .layout { display: flex; min-height: 100vh; }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: var(--nav-w);
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      z-index: 100;
+      transition: transform var(--transition);
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--primary);
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+
+    .logo-text { font-size: 13px; font-weight: 700; line-height: 1.4; }
+    .logo-sub  { font-size: 11px; color: var(--text-sec); font-weight: 400; }
+
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-sec);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 20px 20px 8px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      color: var(--text-sec);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover { color: var(--text); background: var(--surface-lt); }
+
+    .nav-link.active {
+      color: var(--primary);
+      background: var(--primary-dim);
+    }
+
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px; bottom: 6px;
+      width: 3px;
+      background: var(--primary);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .nav-icon { font-size: 16px; flex-shrink: 0; }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-sec);
+      text-align: center;
+    }
+
+    /* ── Main ────────────────────────────────────────────────────────── */
+    .main { margin-right: var(--nav-w); flex: 1; min-width: 0; }
+
+    /* ── Mobile header ───────────────────────────────────────────────── */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-logo { font-size: 15px; font-weight: 700; }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      color: var(--text); font-size: 22px; line-height: 1;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 99;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 72px 56px 64px;
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 60%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.3);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 20px;
+      letter-spacing: .04em;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span { color: var(--primary); }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-sec);
+      max-width: 560px;
+      margin-bottom: 28px;
+      line-height: 1.8;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .meta-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface-lt);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--text-sec);
+    }
+
+    .meta-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* ── Section ─────────────────────────────────────────────────────── */
+    .section {
+      padding: 64px 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-sec);
+      max-width: 680px;
+      margin-bottom: 32px;
+      line-height: 1.9;
+    }
+
+    /* ── Policy card ─────────────────────────────────────────────────── */
+    .policy-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 16px;
+      transition: border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .policy-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; left: 0;
+      height: 3px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform var(--transition);
+    }
+
+    .policy-card:hover { border-color: var(--primary); }
+    .policy-card:hover::before { transform: scaleX(1); }
+
+    .policy-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .policy-icon {
+      width: 44px; height: 44px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.25);
+      border-radius: var(--radius-s);
+      display: grid; place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .policy-card-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .policy-card-body {
+      font-size: 14px;
+      color: var(--text-sec);
+      line-height: 1.85;
+    }
+
+    .policy-card-body p + p { margin-top: 10px; }
+
+    /* ── Highlight box ───────────────────────────────────────────────── */
+    .highlight {
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.25);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 24px;
+    }
+
+    .highlight-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+
+    .highlight-text { font-size: 14px; color: var(--text-sec); line-height: 1.8; }
+    .highlight-text strong { color: var(--primary); }
+
+    /* ── Warn box ────────────────────────────────────────────────────── */
+    .warn {
+      background: rgba(243,156,18,.1);
+      border: 1px solid rgba(243,156,18,.25);
+      border-radius: var(--radius);
+      padding: 18px 24px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    .warn-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .warn-text { font-size: 14px; color: var(--text-sec); line-height: 1.8; }
+    .warn-text strong { color: var(--accent); }
+
+    /* ── Permission table ────────────────────────────────────────────── */
+    .perm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .perm-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: border-color var(--transition);
+    }
+
+    .perm-row:hover { border-color: var(--primary); }
+
+    .perm-icon {
+      width: 40px; height: 40px;
+      background: var(--primary-dim);
+      border-radius: var(--radius-s);
+      display: grid; place-items: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .perm-label { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .perm-desc  { font-size: 13px; color: var(--text-sec); line-height: 1.6; }
+
+    /* ── Contact cards ───────────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: border-color var(--transition), transform var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .contact-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.25);
+      border-radius: var(--radius-s);
+      display: grid; place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-label { font-size: 12px; color: var(--text-sec); margin-bottom: 4px; }
+    .contact-value { font-size: 14px; font-weight: 600; }
+
+    /* ── Back to top ─────────────────────────────────────────────────── */
+    #back-top {
+      position: fixed;
+      left: 24px; bottom: 24px;
+      width: 44px; height: 44px;
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      display: grid; place-items: center;
+      box-shadow: 0 4px 16px var(--primary-glow);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--transition), transform var(--transition);
+      z-index: 300;
+    }
+
+    #back-top.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(100%); }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .mobile-header { display: flex; }
+      .main { margin-right: 0; }
+      .hero { padding: 40px 24px 48px; }
+      .section { padding: 48px 24px; }
+      #back-top { left: 16px; bottom: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .perm-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Sidebar ──────────────────────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">🧭</div>
+    <div>
+      <div class="logo-text">أطلس حدائق أكتوبر</div>
+      <div class="logo-sub">سياسة الخصوصية</div>
+    </div>
+  </div>
+
+  <div class="nav-section-label">الأقسام</div>
+  <a href="#intro"       class="nav-link active"><span class="nav-icon">📋</span> مقدمة</a>
+  <a href="#data"        class="nav-link"><span class="nav-icon">🗄️</span> البيانات التي نجمعها</a>
+  <a href="#location"    class="nav-link"><span class="nav-icon">📍</span> بيانات الموقع</a>
+  <a href="#permissions" class="nav-link"><span class="nav-icon">🔐</span> الأذونات المطلوبة</a>
+  <a href="#storage"     class="nav-link"><span class="nav-icon">💾</span> التخزين المحلي</a>
+  <a href="#third-party" class="nav-link"><span class="nav-icon">🔗</span> الأطراف الثالثة</a>
+  <a href="#ads"         class="nav-link"><span class="nav-icon">📢</span> الإعلانات</a>
+  <a href="#children"    class="nav-link"><span class="nav-icon">👶</span> خصوصية الأطفال</a>
+  <a href="#changes"     class="nav-link"><span class="nav-icon">🔄</span> تحديثات السياسة</a>
+  <a href="#contact"     class="nav-link"><span class="nav-icon">📞</span> تواصل معنا</a>
+
+  <div class="sidebar-footer">
+    آخر تحديث: يناير 2026
+  </div>
+</aside>
+
+<div class="sidebar-overlay" id="overlay"></div>
+
+<div class="layout">
+  <main class="main">
+
+    <!-- Mobile header -->
+    <header class="mobile-header">
+      <span class="mobile-logo">🧭 أطلس حدائق أكتوبر</span>
+      <button class="hamburger" id="hamburger" aria-label="القائمة">☰</button>
+    </header>
+
+    <!-- ── Hero ──────────────────────────────────────────────────────── -->
+    <section class="hero" id="intro">
+      <div class="hero-eyebrow">🔒 سياسة الخصوصية الرسمية</div>
+      <h1 class="hero-title">
+        خصوصيتك <span>أولويتنا</span>
+      </h1>
+      <p class="hero-desc">
+        نحن في أطلس حدائق أكتوبر نلتزم بحماية خصوصية مستخدمينا بشكل كامل.
+        توضح هذه السياسة بدقة ما نجمعه وما لا نجمعه وكيف نستخدم بياناتك.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-badge"><div class="meta-dot"></div> لا نجمع بيانات شخصية</div>
+        <div class="meta-badge"><div class="meta-dot"></div> لا نشارك بياناتك مع أحد</div>
+        <div class="meta-badge"><div class="meta-dot"></div> موقعك يبقى على جهازك فقط</div>
+        <div class="meta-badge"><div class="meta-dot"></div> لا تسجيل دخول مطلوب</div>
+      </div>
+    </section>
+
+    <!-- ── Data we collect ────────────────────────────────────────────── -->
+    <section class="section" id="data">
+      <div class="section-eyebrow">البيانات</div>
+      <h2 class="section-title">البيانات التي نجمعها</h2>
+      <p class="section-desc">
+        التطبيق مصمم بمبدأ الحد الأدنى من البيانات. لا يتطلب إنشاء حساب ولا يجمع أي معلومات تعريفية شخصية.
+      </p>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">✅</div>
+          <div class="policy-card-title">ما لا نجمعه أبداً</div>
+        </div>
+        <div class="policy-card-body">
+          <p>لا نجمع الاسم أو البريد الإلكتروني أو رقم الهاتف أو أي معلومات تعريفية شخصية.</p>
+          <p>لا نتتبع سجل البحث أو العمارات التي زرتها أو مساراتك على الخريطة.</p>
+          <p>لا نجمع بيانات الجهاز مثل معرف الإعلانات أو معرف الجهاز أو عنوان IP.</p>
+          <p>لا نستخدم ملفات تعريف الارتباط (Cookies) أو أي تقنيات تتبع مماثلة.</p>
+        </div>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">📦</div>
+          <div class="policy-card-title">ما يُخزَّن محلياً على جهازك فقط</div>
+        </div>
+        <div class="policy-card-body">
+          <p>بيانات العمارات والمشاريع — يُحفظ ملف KML محلياً لتشغيل التطبيق بدون إنترنت.</p>
+          <p>إعداداتك الشخصية — لون التمييز وحجم الخط والبنايات المميزة تُحفظ على جهازك فقط.</p>
+          <p>هذه البيانات لا تُرسل لأي خادم ولا يمكن لأي طرف ثالث الوصول إليها.</p>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <span class="highlight-icon">💡</span>
+        <p class="highlight-text">
+          <strong>الملخص:</strong> التطبيق يعمل بشكل كامل دون الحاجة لمعرفة هويتك. لا حساب، لا تسجيل، لا تتبع.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Location ───────────────────────────────────────────────────── -->
+    <section class="section" id="location">
+      <div class="section-eyebrow">الموقع الجغرافي</div>
+      <h2 class="section-title">بيانات الموقع</h2>
+      <p class="section-desc">
+        يطلب التطبيق إذن الوصول لموقعك الجغرافي عند الضغط على زر "موقعي". فيما يلي تفاصيل كاملة حول كيفية التعامل مع هذه البيانات.
+      </p>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">📍</div>
+          <div class="policy-card-title">كيف نستخدم موقعك</div>
+        </div>
+        <div class="policy-card-body">
+          <p>موقعك يُستخدم فقط لعرض نقطة خضراء على الخريطة تمثل مكانك الحالي.</p>
+          <p>يساعدك هذا على معرفة موقعك بالنسبة للعمارات المعروضة على الخريطة.</p>
+          <p>لا يُرسل موقعك إلى أي خادم خارجي ولا يُحفظ على الجهاز بعد إغلاق التطبيق.</p>
+          <p>الوصول للموقع اختياري تماماً — التطبيق يعمل بكامل وظائفه بدونه.</p>
+        </div>
+      </div>
+
+      <div class="warn">
+        <span class="warn-icon">⚠️</span>
+        <p class="warn-text">
+          <strong>هام:</strong> يمكنك في أي وقت إلغاء إذن الموقع من إعدادات هاتفك تحت قسم "التطبيقات" دون أي تأثير على وظائف البحث والملاحة.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Permissions ────────────────────────────────────────────────── -->
+    <section class="section" id="permissions">
+      <div class="section-eyebrow">الأذونات</div>
+      <h2 class="section-title">الأذونات المطلوبة</h2>
+      <p class="section-desc">
+        يطلب التطبيق الحد الأدنى من الأذونات اللازمة لأداء وظائفه الأساسية فقط.
+      </p>
+
+      <div class="perm-grid">
+        <div class="perm-row">
+          <div class="perm-icon">🌐</div>
+          <div>
+            <div class="perm-label">الإنترنت</div>
+            <div class="perm-desc">لتحميل بيانات العمارات عند أول تشغيل والتحقق من التحديثات.</div>
+          </div>
+        </div>
+        <div class="perm-row">
+          <div class="perm-icon">📍</div>
+          <div>
+            <div class="perm-label">الموقع الجغرافي</div>
+            <div class="perm-desc">اختياري — لعرض موقعك الحالي على الخريطة عند طلبك.</div>
+          </div>
+        </div>
+        <div class="perm-row">
+          <div class="perm-icon">💾</div>
+          <div>
+            <div class="perm-label">التخزين المحلي</div>
+            <div class="perm-desc">لحفظ بيانات العمارات وإعداداتك محلياً لتشغيل التطبيق بدون إنترنت.</div>
+          </div>
+        </div>
+        <div class="perm-row">
+          <div class="perm-icon">🗺️</div>
+          <div>
+            <div class="perm-label">فتح تطبيقات خارجية</div>
+            <div class="perm-desc">لفتح خرائط Google عند بدء الملاحة إلى العمارة المحددة.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <span class="highlight-icon">🔒</span>
+        <p class="highlight-text">
+          <strong>لا نطلب أبداً:</strong> الوصول إلى جهات الاتصال، الكاميرا، الميكروفون، الصور، أو أي بيانات حساسة أخرى.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Local storage ───────────────────────────────────────────────── -->
+    <section class="section" id="storage">
+      <div class="section-eyebrow">التخزين</div>
+      <h2 class="section-title">التخزين المحلي</h2>
+      <p class="section-desc">
+        جميع البيانات التي يحفظها التطبيق تبقى على جهازك فقط ولا يمكن لأي طرف خارجي الوصول إليها.
+      </p>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">🗂️</div>
+          <div class="policy-card-title">ما يُحفظ على جهازك</div>
+        </div>
+        <div class="policy-card-body">
+          <p><strong style="color:var(--primary)">ملف KML</strong> — بيانات مواقع العمارات والمشاريع لتشغيل التطبيق بدون إنترنت.</p>
+          <p><strong style="color:var(--primary)">بصمة SHA-256</strong> — رمز تحقق لمعرفة ما إذا كانت البيانات محدّثة دون الحاجة لتحميل الملف كاملاً.</p>
+          <p><strong style="color:var(--primary)">الإعدادات</strong> — تفضيلاتك الشخصية مثل لون التمييز وحجم الخط والبنايات المميزة.</p>
+        </div>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">🗑️</div>
+          <div class="policy-card-title">حذف البيانات</div>
+        </div>
+        <div class="policy-card-body">
+          <p>يمكنك حذف جميع البيانات المحفوظة بإلغاء تثبيت التطبيق من جهازك.</p>
+          <p>يمكنك إعادة ضبط الإعدادات في أي وقت من قائمة الإعدادات داخل التطبيق.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Third party ────────────────────────────────────────────────── -->
+    <section class="section" id="third-party">
+      <div class="section-eyebrow">الأطراف الثالثة</div>
+      <h2 class="section-title">الخدمات الخارجية</h2>
+      <p class="section-desc">
+        يستخدم التطبيق عدداً محدوداً من الخدمات الخارجية لأداء وظائفه الأساسية.
+      </p>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">🗺️</div>
+          <div class="policy-card-title">خرائط Google — Google Maps</div>
+        </div>
+        <div class="policy-card-body">
+          <p>يُستخدم فقط عند الضغط على "ابدأ الملاحة الفورية" — يفتح التطبيق خارج أطلس.</p>
+          <p>تطبق سياسة خصوصية Google عند استخدام خرائط Google. يمكن الاطلاع عليها على <strong style="color:var(--primary)">policies.google.com/privacy</strong></p>
+        </div>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">🌍</div>
+          <div class="policy-card-title">OpenStreetMap & ESRI</div>
+        </div>
+        <div class="policy-card-body">
+          <p>تُستخدم لعرض بلاطات الخريطة داخل التطبيق. يتم إرسال طلبات الخريطة إلى خوادمهم لتحميل الصور فقط.</p>
+          <p>لا يتم إرسال أي بيانات شخصية ضمن هذه الطلبات.</p>
+        </div>
+      </div>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">☁️</div>
+          <div class="policy-card-title">Google Drive</div>
+        </div>
+        <div class="policy-card-body">
+          <p>يُستخدم كمصدر لتحميل بيانات العمارات (ملف KML) عند التحديث.</p>
+          <p>الاتصال بـ Google Drive يحدث فقط عند تشغيل التطبيق للتحقق من وجود بيانات جديدة.</p>
+          <p>لا يتم إرسال أي بيانات مستخدم إلى Google Drive — فقط تحميل ملف البيانات العام.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Ads ────────────────────────────────────────────────────────── -->
+    <section class="section" id="ads">
+      <div class="section-eyebrow">الإعلانات</div>
+      <h2 class="section-title">الإعلانات — Google AdMob</h2>
+      <p class="section-desc">
+        يعرض التطبيق إعلانات من خلال Google AdMob لدعم التطوير المستمر وتوفير التطبيق مجاناً.
+      </p>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">📢</div>
+          <div class="policy-card-title">كيف تعمل الإعلانات</div>
+        </div>
+        <div class="policy-card-body">
+          <p>تُعرض إعلانات بانر غير مزعجة في أسفل بطاقة معلومات العمارة.</p>
+          <p>Google AdMob قد يستخدم معرّف الإعلانات الخاص بجهازك لعرض إعلانات مناسبة.</p>
+          <p>يمكنك إيقاف الإعلانات المخصصة من إعدادات جهازك تحت قسم "الخصوصية" أو "الإعلانات".</p>
+        </div>
+      </div>
+
+      <div class="highlight">
+        <span class="highlight-icon">ℹ️</span>
+        <p class="highlight-text">
+          لمزيد من المعلومات حول كيفية استخدام Google لبياناتك في الإعلانات، يرجى مراجعة:
+          <strong>policies.google.com/technologies/ads</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Children ───────────────────────────────────────────────────── -->
+    <section class="section" id="children">
+      <div class="section-eyebrow">الأطفال</div>
+      <h2 class="section-title">خصوصية الأطفال</h2>
+      <p class="section-desc">
+        نحن نأخذ خصوصية الأطفال على محمل الجد.
+      </p>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">👶</div>
+          <div class="policy-card-title">سياستنا تجاه الأطفال</div>
+        </div>
+        <div class="policy-card-body">
+          <p>التطبيق غير موجّه للأطفال دون سن 13 عاماً بشكل مقصود.</p>
+          <p>لا نجمع عن قصد أي بيانات شخصية من الأطفال.</p>
+          <p>نظراً لأن التطبيق لا يجمع أي بيانات شخصية من أي مستخدم أصلاً، فهو آمن للاستخدام العائلي.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Changes ────────────────────────────────────────────────────── -->
+    <section class="section" id="changes">
+      <div class="section-eyebrow">التحديثات</div>
+      <h2 class="section-title">تحديثات سياسة الخصوصية</h2>
+      <p class="section-desc">
+        قد نقوم بتحديث هذه السياسة من وقت لآخر.
+      </p>
+
+      <div class="policy-card">
+        <div class="policy-card-header">
+          <div class="policy-icon">🔄</div>
+          <div class="policy-card-title">كيف نُعلمك بالتغييرات</div>
+        </div>
+        <div class="policy-card-body">
+          <p>في حال إجراء تغييرات جوهرية على هذه السياسة، سيتم نشرها على هذه الصفحة مع تحديث تاريخ "آخر تحديث".</p>
+          <p>استمرار استخدامك للتطبيق بعد نشر التغييرات يُعدّ موافقةً على السياسة المحدّثة.</p>
+          <p>تاريخ آخر تحديث لهذه السياسة: <strong style="color:var(--primary)">يناير 2026</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ────────────────────────────────────────────────────── -->
+    <section class="section" id="contact">
+      <div class="section-eyebrow">التواصل</div>
+      <h2 class="section-title">تواصل معنا</h2>
+      <p class="section-desc">إذا كان لديك أي سؤال حول سياسة الخصوصية يسعدنا الرد عليك.</p>
+
+      <div class="contact-grid">
+        <a href="tel:+201000000000" class="contact-card">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">الدعم الفني</div>
+            <div class="contact-value">+20 100 000 0000</div>
+          </div>
+        </a>
+        <a href="mailto:support@example.com" class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">البريد الإلكتروني</div>
+            <div class="contact-value">support@example.com</div>
+          </div>
+        </a>
+        <a href="https://facebook.com/example" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">👥</div>
+          <div>
+            <div class="contact-label">التواصل الاجتماعي</div>
+            <div class="contact-value">صفحتنا على فيسبوك</div>
+          </div>
+        </a>
+      </div>
+
+      <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--border);text-align:center">
+        <p style="font-size:13px;color:var(--text-sec);margin-bottom:8px">
+          هل تريد العودة لدليل الاستخدام؟
+        </p>
+        <a href="/" style="color:var(--primary);font-size:14px;font-weight:600;text-decoration:none">
+          🧭 دليل الاستخدام الفني ←
+        </a>
+        <p style="font-size:13px;color:var(--text-sec);margin-top:24px">
+          © 2026 أطلس حدائق أكتوبر. جميع الحقوق محفوظة.
+        </p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<button id="back-top" aria-label="العودة للأعلى">↑</button>
+
+<script>
+  const sidebar   = document.getElementById('sidebar');
+  const overlay   = document.getElementById('overlay');
+  const hamburger = document.getElementById('hamburger');
+
+  function openSidebar()  { sidebar.classList.add('open');    overlay.classList.add('open');    hamburger.textContent = '✕'; }
+  function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); hamburger.textContent = '☰'; }
+
+  hamburger.addEventListener('click', () => sidebar.classList.contains('open') ? closeSidebar() : openSidebar());
+  overlay.addEventListener('click', closeSidebar);
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => observer.observe(s));
+  navLinks.forEach(link => link.addEventListener('click', closeSidebar));
+
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 400));
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

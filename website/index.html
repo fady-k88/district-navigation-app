@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دليل الاستخدام — أطلس حدائق أكتوبر</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & base ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #1A1A2E;
+      --surface:      #16213E;
+      --surface-lt:   #1F2B47;
+      --primary:      #2ECC71;
+      --primary-dim:  rgba(46,204,113,.15);
+      --primary-glow: rgba(46,204,113,.35);
+      --accent:       #F39C12;
+      --danger:       #E74C3C;
+      --blue:         #3498DB;
+      --text:         #FFFFFF;
+      --text-sec:     #A0A0B0;
+      --border:       #3A4A6B;
+      --radius:       16px;
+      --radius-s:     10px;
+      --font:         'Cairo', sans-serif;
+      --nav-w:        260px;
+      --transition:   .25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    ::selection { background: var(--primary-dim); color: var(--primary); }
+
+    /* ── Scrollbar ────────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar nav ─────────────────────────────────────────────────── */
+    .sidebar {
+      width: var(--nav-w);
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      z-index: 100;
+      transition: transform var(--transition);
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 24px 20px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: var(--primary);
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+
+    .logo-text { font-size: 13px; font-weight: 700; line-height: 1.4; }
+    .logo-sub  { font-size: 11px; color: var(--text-sec); font-weight: 400; }
+
+    .nav-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-sec);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 20px 20px 8px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      color: var(--text-sec);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 0;
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .nav-link:hover { color: var(--text); background: var(--surface-lt); }
+
+    .nav-link.active {
+      color: var(--primary);
+      background: var(--primary-dim);
+    }
+
+    .nav-link.active::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px; bottom: 6px;
+      width: 3px;
+      background: var(--primary);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .nav-icon { font-size: 16px; flex-shrink: 0; }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-sec);
+      text-align: center;
+    }
+
+    /* ── Main content ────────────────────────────────────────────────── */
+    .main {
+      margin-right: var(--nav-w);
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ── Mobile header ───────────────────────────────────────────────── */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-logo { font-size: 15px; font-weight: 700; }
+
+    .hamburger {
+      background: none; border: none; cursor: pointer;
+      color: var(--text); font-size: 22px; line-height: 1;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 99;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 72px 56px 64px;
+      background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 60%);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-text { flex: 1; min-width: 0; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.3);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 20px;
+      letter-spacing: .04em;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span { color: var(--primary); }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--text-sec);
+      max-width: 480px;
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface-lt);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--text-sec);
+    }
+
+    .badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* ── App mockup ──────────────────────────────────────────────────── */
+    .mockup {
+      flex-shrink: 0;
+      width: 220px;
+    }
+
+    .mockup-phone {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 28px;
+      padding: 16px 12px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.5), 0 0 0 1px var(--border);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .mockup-appbar {
+      background: var(--surface-lt);
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border);
+    }
+
+    .mockup-compass {
+      width: 32px; height: 32px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 16px;
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .mockup-title { font-size: 9px; font-weight: 700; text-align: left; }
+    .mockup-title-sub { font-size: 7px; color: var(--text-sec); }
+
+    .mockup-searchbar {
+      background: var(--surface-lt);
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .mockup-search-btn {
+      background: var(--blue);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 8px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .mockup-input {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      opacity: .6;
+    }
+
+    .mockup-chips {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mockup-chip {
+      background: var(--surface-lt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px 8px;
+      font-size: 7px;
+      color: var(--text-sec);
+    }
+
+    .mockup-map {
+      background: #1e3a2e;
+      border-radius: 12px;
+      height: 120px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .mockup-map-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(46,204,113,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46,204,113,.07) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
+    .mockup-pin {
+      position: absolute;
+      font-size: 14px;
+      transform: translate(-50%, -100%);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+      animation: pulse-pin 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-pin {
+      0%, 100% { transform: translate(-50%, -100%) scale(1); }
+      50%       { transform: translate(-50%, -100%) scale(1.2); }
+    }
+
+    /* ── Section wrapper ─────────────────────────────────────────────── */
+    .section {
+      padding: 64px 56px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-sec);
+      max-width: 600px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    /* ── Step cards ──────────────────────────────────────────────────── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; left: 0;
+      height: 3px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform var(--transition);
+    }
+
+    .step-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+    .step-card:hover::before { transform: scaleX(1); }
+
+    .step-number {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.25);
+      border-radius: 100px;
+      padding: 3px 10px;
+      display: inline-block;
+      margin-bottom: 14px;
+      letter-spacing: .06em;
+    }
+
+    .step-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-sec);
+      line-height: 1.7;
+    }
+
+    /* ── Feature grid ────────────────────────────────────────────────── */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: border-color var(--transition);
+    }
+
+    .feature-card:hover { border-color: var(--primary); }
+
+    .feature-icon-wrap {
+      width: 44px; height: 44px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.25);
+      border-radius: var(--radius-s);
+      display: grid; place-items: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      color: var(--text-sec);
+      line-height: 1.7;
+    }
+
+    /* ── Settings table ──────────────────────────────────────────────── */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .setting-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color var(--transition);
+    }
+
+    .setting-row:hover { border-color: var(--primary); }
+
+    .setting-icon {
+      width: 40px; height: 40px;
+      background: var(--primary-dim);
+      border-radius: var(--radius-s);
+      display: grid; place-items: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      border: 1px solid rgba(46,204,113,.2);
+    }
+
+    .setting-label { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .setting-desc  { font-size: 13px; color: var(--text-sec); line-height: 1.6; }
+
+    /* ── Tip box ─────────────────────────────────────────────────────── */
+    .tip {
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.25);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 28px;
+    }
+
+    .tip-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .tip-text { font-size: 14px; color: var(--text-sec); line-height: 1.7; }
+    .tip-text strong { color: var(--primary); }
+
+    /* ── Warning box ─────────────────────────────────────────────────── */
+    .warn {
+      background: rgba(243,156,18,.1);
+      border: 1px solid rgba(243,156,18,.25);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    .warn-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .warn-text { font-size: 14px; color: var(--text-sec); line-height: 1.7; }
+    .warn-text strong { color: var(--accent); }
+
+    /* ── FAQ accordion ───────────────────────────────────────────────── */
+    .faq { display: flex; flex-direction: column; gap: 10px; }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+
+    .faq-item:hover { border-color: var(--primary); }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 600;
+      text-align: right;
+      padding: 18px 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: color var(--transition);
+    }
+
+    .faq-q:hover { color: var(--primary); }
+
+    .faq-chevron {
+      font-size: 18px;
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-item.open .faq-q { color: var(--primary); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+
+    .faq-item.open .faq-a { max-height: 400px; }
+
+    .faq-a-inner {
+      padding: 0 22px 20px;
+      font-size: 14px;
+      color: var(--text-sec);
+      line-height: 1.8;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    /* ── Sync diagram ────────────────────────────────────────────────── */
+    .sync-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 480px;
+    }
+
+    .sync-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .sync-spine {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .sync-dot {
+      width: 36px; height: 36px;
+      background: var(--primary-dim);
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .sync-line {
+      width: 2px;
+      height: 32px;
+      background: linear-gradient(var(--primary), var(--border));
+      margin: 2px 0;
+    }
+
+    .sync-step:last-child .sync-line { display: none; }
+
+    .sync-content { padding-top: 6px; padding-bottom: 20px; }
+    .sync-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .sync-desc  { font-size: 13px; color: var(--text-sec); line-height: 1.6; }
+
+    /* ── Color swatches ──────────────────────────────────────────────── */
+    .swatches { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .swatch-circle {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 3px solid var(--surface-lt);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .swatch-circle:hover { transform: scale(1.1); }
+    .swatch-label { font-size: 12px; color: var(--text-sec); }
+
+    /* ── Marker preview ──────────────────────────────────────────────── */
+    .markers { display: flex; gap: 24px; flex-wrap: wrap; }
+
+    .marker-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      min-width: 110px;
+    }
+
+    .marker-pin  { font-size: 32px; color: var(--primary); }
+    .marker-dot  {
+      width: 18px; height: 18px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 8px var(--primary-glow);
+    }
+    .marker-num  {
+      width: 32px; height: 32px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid #fff;
+      display: grid; place-items: center;
+      font-size: 12px; font-weight: 700;
+    }
+
+    .marker-label { font-size: 13px; color: var(--text-sec); }
+
+    /* ── Map style preview ───────────────────────────────────────────── */
+    .map-styles { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .map-style-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      width: 160px;
+      transition: border-color var(--transition);
+      cursor: default;
+    }
+
+    .map-style-card:hover { border-color: var(--primary); }
+
+    .map-preview {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .map-preview.standard  { background: #1e3a2e; }
+    .map-preview.light     { background: #d4e6c3; }
+    .map-preview.satellite { background: #0a1628; }
+
+    .map-style-name {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-top: 1px solid var(--border);
+    }
+
+    .map-style-desc {
+      padding: 0 14px 12px;
+      font-size: 12px;
+      color: var(--text-sec);
+    }
+
+    /* ── Contact cards ───────────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: border-color var(--transition), transform var(--transition);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .contact-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.25);
+      border-radius: var(--radius-s);
+      display: grid; place-items: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-label { font-size: 12px; color: var(--text-sec); margin-bottom: 4px; }
+    .contact-value { font-size: 14px; font-weight: 600; }
+
+    /* ── Version badge ───────────────────────────────────────────────── */
+    .version-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(46,204,113,.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 32px;
+    }
+
+    /* ── Back to top ─────────────────────────────────────────────────── */
+    #back-top {
+      position: fixed;
+      left: 24px;
+      bottom: 24px;
+      width: 44px; height: 44px;
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      display: grid; place-items: center;
+      box-shadow: 0 4px 16px var(--primary-glow);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--transition), transform var(--transition);
+      z-index: 300;
+    }
+
+    #back-top.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-overlay.open { display: block; }
+
+      .mobile-header { display: flex; }
+
+      .main { margin-right: 0; }
+
+      .hero {
+        flex-direction: column;
+        padding: 40px 24px 48px;
+        gap: 32px;
+      }
+
+      .mockup { width: 100%; max-width: 240px; margin: 0 auto; }
+
+      .section { padding: 48px 24px; }
+
+      #back-top { left: 16px; bottom: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .steps, .features, .settings-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .map-styles { flex-direction: column; }
+      .map-style-card { width: 100%; }
+    }
+
+    /* ── Reduced motion ──────────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .mockup-phone { animation: none; }
+      .mockup-pin   { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Sidebar ──────────────────────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">🧭</div>
+    <div>
+      <div class="logo-text">أطلس حدائق أكتوبر</div>
+      <div class="logo-sub">دليل الاستخدام الفني</div>
+    </div>
+  </div>
+
+  <div class="nav-section-label">البداية</div>
+  <a href="#intro"    class="nav-link active"><span class="nav-icon">👋</span> مقدمة</a>
+  <a href="#start"    class="nav-link"><span class="nav-icon">🚀</span> كيفية البدء</a>
+
+  <div class="nav-section-label">الميزات</div>
+  <a href="#search"   class="nav-link"><span class="nav-icon">🔍</span> البحث عن عمارة</a>
+  <a href="#map"      class="nav-link"><span class="nav-icon">🗺️</span> الخريطة التفاعلية</a>
+  <a href="#navigate" class="nav-link"><span class="nav-icon">🧭</span> الملاحة الفورية</a>
+  <a href="#featured" class="nav-link"><span class="nav-icon">⭐</span> البنايات المميزة</a>
+  <a href="#location" class="nav-link"><span class="nav-icon">📍</span> موقعي الحالي</a>
+
+  <div class="nav-section-label">الإعدادات</div>
+  <a href="#settings" class="nav-link"><span class="nav-icon">⚙️</span> الإعدادات</a>
+  <a href="#sync"     class="nav-link"><span class="nav-icon">🔄</span> المزامنة التلقائية</a>
+  <a href="#offline"  class="nav-link"><span class="nav-icon">📶</span> الوضع بدون إنترنت</a>
+
+  <div class="nav-section-label">المساعدة</div>
+  <a href="#faq"     class="nav-link"><span class="nav-icon">❓</span> الأسئلة الشائعة</a>
+  <a href="#contact" class="nav-link"><span class="nav-icon">📞</span> التواصل معنا</a>
+  <div class="nav-section-label">قانوني</div>
+  <a href="privacy_policy.html" class="nav-link"><span class="nav-icon">🔒</span> سياسة الخصوصية</a>
+  <div class="sidebar-footer">
+    الإصدار 1.0.0 &nbsp;·&nnav-linkbsp; © 2026
+  </div>
+</aside>
+
+<div class="sidebar-overlay" id="overlay"></div>
+
+<!-- ── Layout ────────────────────────────────────────────────────────────── -->
+<div class="layout">
+  <main class="main">
+
+    <!-- Mobile header -->
+    <header class="mobile-header">
+      <span class="mobile-logo">🧭 أطلس حدائق أكتوبر</span>
+      <button class="hamburger" id="hamburger" aria-label="القائمة">☰</button>
+    </header>
+
+    <!-- ── Hero ──────────────────────────────────────────────────────── -->
+    <section class="hero" id="intro">
+      <div class="hero-text">
+        <div class="hero-eyebrow">🧭 دليل الاستخدام الرسمي</div>
+        <h1 class="hero-title">
+          كل عمارة في<br/>
+          <span>حدائق أكتوبر</span><br/>
+          على بُعد لمسة
+        </h1>
+        <p class="hero-desc">
+          أطلس حدائق أكتوبر هو تطبيق ملاحة متخصص لعمارات ومشاريع منطقة حدائق أكتوبر.
+          ابحث عن أي عمارة بالرقم وابدأ الملاحة الفورية إلى وجهتك في ثوانٍ.
+        </p>
+        <div class="hero-badges">
+          <div class="badge"><div class="badge-dot"></div> بدون إنترنت بعد التحميل</div>
+          <div class="badge"><div class="badge-dot"></div> خرائط Google مدمجة</div>
+          <div class="badge"><div class="badge-dot"></div> تحديث تلقائي للبيانات</div>
+        </div>
+      </div>
+
+      <!-- App mockup -->
+      <div class="mockup">
+        <div class="mockup-phone">
+          <div class="mockup-appbar">
+            <div style="display:flex;gap:6px">
+              <div style="width:22px;height:22px;background:var(--surface);border:1px solid var(--border);border-radius:5px;display:grid;place-items:center;font-size:10px;">⚙️</div>
+              <div style="width:22px;height:22px;background:var(--surface);border:1px solid var(--border);border-radius:5px;display:grid;place-items:center;font-size:10px;">ℹ️</div>
+              <div class="mockup-compass">🧭</div>
+            </div>
+            <div style="text-align:left">
+              <div class="mockup-title">أطلس حدائق أكتوبر</div>
+              <div class="mockup-title-sub">نظام الخرائط والملاحة</div>
+            </div>
+          </div>
+          <div class="mockup-searchbar">
+            <div class="mockup-search-btn">بحث</div>
+            <div class="mockup-input"></div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:3px 6px;font-size:7px;color:var(--text-sec)">مشروع ▾</div>
+          </div>
+          <div class="mockup-chips">
+            <div class="mockup-chip">عمارة 45</div>
+            <div class="mockup-chip">عمارة 104</div>
+            <div class="mockup-chip">عمارة 5</div>
+          </div>
+          <div class="mockup-map">
+            <div class="mockup-map-grid"></div>
+            <div class="mockup-pin" style="top:45%;left:50%">📍</div>
+            <div class="mockup-pin" style="top:60%;left:30%;animation-delay:.7s;font-size:11px">📍</div>
+            <div class="mockup-pin" style="top:35%;left:70%;animation-delay:1.4s;font-size:11px">📍</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Getting started ─────────────────────────────────────────── -->
+    <section class="section" id="start">
+      <div class="section-eyebrow">البداية</div>
+      <h2 class="section-title">كيفية البدء</h2>
+      <p class="section-desc">التطبيق مصمم ليكون جاهزاً في ثوانٍ. اتبع هذه الخطوات عند أول تشغيل.</p>
+
+      <div class="steps">
+        <div class="step-card">
+          <span class="step-number">الخطوة ١</span>
+          <span class="step-icon">📶</span>
+          <div class="step-title">تأكد من الاتصال بالإنترنت</div>
+          <p class="step-desc">يحتاج التطبيق للإنترنت فقط في أول تشغيل لتحميل بيانات المنطقة. بعد ذلك يعمل بشكل كامل بدون اتصال.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">الخطوة ٢</span>
+          <span class="step-icon">⏳</span>
+          <div class="step-title">انتظر تحميل البيانات</div>
+          <p class="step-desc">ستظهر شاشة تحميل تلقائية. تستغرق عملية التحميل الأولى بضع ثوانٍ حسب سرعة اتصالك.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">الخطوة ٣</span>
+          <span class="step-icon">🗺️</span>
+          <div class="step-title">ابدأ الاستخدام فوراً</div>
+          <p class="step-desc">بمجرد اكتمال التحميل ستظهر الخريطة التفاعلية مع شريط البحث. لا حاجة لإنشاء حساب أو تسجيل دخول.</p>
+        </div>
+      </div>
+
+      <div class="tip">
+        <span class="tip-icon">💡</span>
+        <p class="tip-text">
+          <strong>نصيحة:</strong> إذا واجهت مشكلة في التحميل، تحقق من اتصالك بالإنترنت ثم اضغط على زر "إعادة المحاولة". التطبيق يحاول التحميل تلقائياً.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Search ──────────────────────────────────────────────────── -->
+    <section class="section" id="search">
+      <div class="section-eyebrow">الميزات الأساسية</div>
+      <h2 class="section-title">البحث عن عمارة</h2>
+      <p class="section-desc">البحث هو الطريقة الرئيسية للوصول لأي عمارة في المنطقة. يدعم التطبيق طرق إدخال متعددة.</p>
+
+      <div class="steps">
+        <div class="step-card">
+          <span class="step-icon">🏗️</span>
+          <div class="step-title">اختر المشروع</div>
+          <p class="step-desc">اضغط على قائمة "مشروع" في شريط البحث واختر المشروع المطلوب من القائمة المنسدلة.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">🔢</span>
+          <div class="step-title">أدخل رقم العمارة</div>
+          <p class="step-desc">اكتب رقم العمارة في خانة البحث. يدعم التطبيق الأرقام العربية (٤٥) والإنجليزية (45) بشكل متساوٍ.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">🔍</span>
+          <div class="step-title">اضغط بحث</div>
+          <p class="step-desc">اضغط زر "بحث" أو مفتاح الإدخال في لوحة المفاتيح. ستنتقل الخريطة فوراً إلى موقع العمارة.</p>
+        </div>
+      </div>
+
+      <div class="tip">
+        <span class="tip-icon">💡</span>
+        <p class="tip-text">
+          <strong>هام:</strong> التطبيق يقبل الأرقام العربية الهندية (٠١٢٣٤٥٦٧٨٩) والأرقام العربية الغربية (0123456789) على حدٍّ سواء. لا حاجة لتغيير لغة لوحة المفاتيح.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Map ────────────────────────────────────────────────────── -->
+    <section class="section" id="map">
+      <div class="section-eyebrow">الخريطة</div>
+      <h2 class="section-title">الخريطة التفاعلية</h2>
+      <p class="section-desc">خريطة كاملة تعرض مواقع جميع العمارات مع أدوات تحكم سهلة الاستخدام.</p>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🔍</div>
+          <div class="feature-title">تكبير وتصغير</div>
+          <p class="feature-desc">استخدم أزرار + و − على الجانب الأيمن للتحكم في مستوى التكبير.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🎯</div>
+          <div class="feature-title">العودة للمركز</div>
+          <p class="feature-desc">زر "المركز" يعيد الخريطة تلقائياً إلى مركز المنطقة بالزوم الافتراضي.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">📍</div>
+          <div class="feature-title">الضغط على علامة</div>
+          <p class="feature-desc">الضغط على أي علامة عمارة يفتح بطاقة المعلومات مع خيار الملاحة الفورية.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🌍</div>
+          <div class="feature-title">خريطة OpenStreetMap</div>
+          <p class="feature-desc">الخريطة مبنية على OpenStreetMap وتدعم ثلاثة أنماط مختلفة من الإعدادات.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Navigation ─────────────────────────────────────────────── -->
+    <section class="section" id="navigate">
+      <div class="section-eyebrow">الملاحة</div>
+      <h2 class="section-title">الملاحة الفورية</h2>
+      <p class="section-desc">التطبيق يفتح خرائط Google مباشرةً مع الإحداثيات الدقيقة للعمارة.</p>
+
+      <div class="steps">
+        <div class="step-card">
+          <span class="step-icon">🏠</span>
+          <div class="step-title">ابحث عن العمارة</div>
+          <p class="step-desc">ابحث عن رقم العمارة أو اضغط على علامتها على الخريطة.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">📋</span>
+          <div class="step-title">تظهر بطاقة المعلومات</div>
+          <p class="step-desc">تنبثق بطاقة تعرض رقم العمارة والمشروع والإحداثيات الجغرافية الدقيقة.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">🚗</span>
+          <div class="step-title">ابدأ الملاحة</div>
+          <p class="step-desc">اضغط "ابدأ الملاحة الفورية" لفتح خرائط Google مع إرشادات صوتية وتحديث المرور الفوري.</p>
+        </div>
+      </div>
+
+      <div class="warn">
+        <span class="warn-icon">⚠️</span>
+        <p class="warn-text">
+          <strong>ملاحظة:</strong> تتطلب ميزة الملاحة وجود تطبيق خرائط Google مثبتاً على جهازك. إذا لم يكن مثبتاً، سيفتح التطبيق الخريطة في المتصفح بشكل تلقائي.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Featured buildings ─────────────────────────────────────── -->
+    <section class="section" id="featured">
+      <div class="section-eyebrow">وصول سريع</div>
+      <h2 class="section-title">البنايات المميزة</h2>
+      <p class="section-desc">صف من الأزرار السريعة أسفل شريط البحث يمنحك وصولاً فورياً لأكثر العمارات زيارةً.</p>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">⚡</div>
+          <div class="feature-title">وصول بلمسة واحدة</div>
+          <p class="feature-desc">اضغط على أي زر من البنايات المميزة للانتقال الفوري إليها على الخريطة دون الحاجة للكتابة.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">✏️</div>
+          <div class="feature-title">قابلة للتخصيص</div>
+          <p class="feature-desc">من الإعدادات يمكنك تغيير أرقام البنايات المميزة لتناسب احتياجاتك الخاصة.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">↔️</div>
+          <div class="feature-title">قابلة للتمرير</div>
+          <p class="feature-desc">إذا كانت البنايات المميزة أكثر من المساحة المتاحة يمكنك التمرير أفقياً لرؤيتها جميعاً.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── My location ────────────────────────────────────────────── -->
+    <section class="section" id="location">
+      <div class="section-eyebrow">الموقع</div>
+      <h2 class="section-title">موقعي الحالي</h2>
+      <p class="section-desc">اعرف موقعك على الخريطة بالضبط وقارنه بمواقع العمارات.</p>
+
+      <div class="steps">
+        <div class="step-card">
+          <span class="step-icon">📍</span>
+          <div class="step-title">اضغط "موقعي"</div>
+          <p class="step-desc">اضغط زر "موقعي" في أدوات التحكم على يمين الخريطة.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">🔐</span>
+          <div class="step-title">اسمح بالوصول للموقع</div>
+          <p class="step-desc">في أول مرة سيطلب التطبيق إذناً للوصول لموقعك. اضغط "السماح" للمتابعة.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-icon">🟢</span>
+          <div class="step-title">ظهور موقعك</div>
+          <p class="step-desc">ستظهر نقطة خضراء على الخريطة تمثل موقعك الحالي وتنتقل الخريطة إليه تلقائياً.</p>
+        </div>
+      </div>
+
+      <div class="warn">
+        <span class="warn-icon">⚠️</span>
+        <p class="warn-text">
+          <strong>الخصوصية:</strong> موقعك لا يُرسل لأي خادم ولا يُحفظ. يُستخدم فقط لعرضه على الخريطة داخل التطبيق.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Settings ───────────────────────────────────────────────── -->
+    <section class="section" id="settings">
+      <div class="section-eyebrow">التخصيص</div>
+      <h2 class="section-title">الإعدادات</h2>
+      <p class="section-desc">اضغط زر ⚙️ في شريط التطبيق العلوي للوصول إلى لوحة الإعدادات. جميع الإعدادات تُحفظ تلقائياً.</p>
+
+      <div class="settings-grid">
+        <div class="setting-row">
+          <div class="setting-icon">🎨</div>
+          <div>
+            <div class="setting-label">لون التمييز</div>
+            <div class="setting-desc">اختر اللون الرئيسي للتطبيق من ثلاثة خيارات: أخضر، أزرق، أو ذهبي.</div>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-icon">🔤</div>
+          <div>
+            <div class="setting-label">حجم الخط</div>
+            <div class="setting-desc">تحكم في حجم النصوص عبر التطبيق: صغير، متوسط، أو كبير.</div>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-icon">🗺️</div>
+          <div>
+            <div class="setting-label">نمط الخريطة</div>
+            <div class="setting-desc">اختر بين الخريطة القياسية، الفاتحة، أو صور الأقمار الصناعية.</div>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-icon">📌</div>
+          <div>
+            <div class="setting-label">شكل علامة المبنى</div>
+            <div class="setting-desc">اختر شكل العلامة على الخريطة: دبوس، نقطة، أو مُرقَّم بالرقم.</div>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-icon">⭐</div>
+          <div>
+            <div class="setting-label">البنايات المميزة</div>
+            <div class="setting-desc">خصّص أرقام العمارات التي تظهر في صف الوصول السريع مفصولة بفاصلة.</div>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-icon">🔄</div>
+          <div>
+            <div class="setting-label">إعادة الضبط</div>
+            <div class="setting-desc">إعادة جميع الإعدادات إلى القيم الافتراضية بضغطة واحدة.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:40px">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:20px">ألوان التمييز المتاحة</h3>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="swatch-circle" style="background:#2ECC71;box-shadow:0 0 12px rgba(46,204,113,.5)"></div>
+            <div class="swatch-label">أخضر</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-circle" style="background:#3498DB;box-shadow:0 0 12px rgba(52,152,219,.5)"></div>
+            <div class="swatch-label">أزرق</div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-circle" style="background:#F39C12;box-shadow:0 0 12px rgba(243,156,18,.5)"></div>
+            <div class="swatch-label">ذهبي</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:40px">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:20px">أشكال علامات المباني</h3>
+        <div class="markers">
+          <div class="marker-item">
+            <div class="marker-pin">📍</div>
+            <div class="marker-label">دبوس</div>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot"></div>
+            <div class="marker-label">نقطة</div>
+          </div>
+          <div class="marker-item">
+            <div class="marker-num">٤٥</div>
+            <div class="marker-label">مُرقَّم</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:40px">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:20px">أنماط الخريطة</h3>
+        <div class="map-styles">
+          <div class="map-style-card">
+            <div class="map-preview standard">🗺️</div>
+            <div class="map-style-name">قياسي</div>
+            <div class="map-style-desc">الوضع الافتراضي مع خلفية داكنة</div>
+          </div>
+          <div class="map-style-card">
+            <div class="map-preview light">☀️</div>
+            <div class="map-style-name">فاتح</div>
+            <div class="map-style-desc">خلفية فاتحة مناسبة للإضاءة العالية</div>
+          </div>
+          <div class="map-style-card">
+            <div class="map-preview satellite">🛰️</div>
+            <div class="map-style-name">قمر صناعي</div>
+            <div class="map-style-desc">صور ESRI الجوية عالية الدقة</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Sync ───────────────────────────────────────────────────── -->
+    <section class="section" id="sync">
+      <div class="section-eyebrow">البيانات</div>
+      <h2 class="section-title">المزامنة التلقائية</h2>
+      <p class="section-desc">يستخدم التطبيق نظاماً ذكياً لتحديث البيانات دون الحاجة لتحديث التطبيق من المتجر.</p>
+
+      <div class="sync-flow">
+        <div class="sync-step">
+          <div class="sync-spine">
+            <div class="sync-dot">🚀</div>
+            <div class="sync-line"></div>
+          </div>
+          <div class="sync-content">
+            <div class="sync-title">تشغيل التطبيق</div>
+            <div class="sync-desc">عند كل تشغيل يتحقق التطبيق تلقائياً من وجود بيانات جديدة.</div>
+          </div>
+        </div>
+        <div class="sync-step">
+          <div class="sync-spine">
+            <div class="sync-dot">🔍</div>
+            <div class="sync-line"></div>
+          </div>
+          <div class="sync-content">
+            <div class="sync-title">مقارنة البصمة الرقمية</div>
+            <div class="sync-desc">يقارن التطبيق بصمة SHA-256 للبيانات المحلية مع الخادم. إذا تطابقت لا يُحمَّل شيء.</div>
+          </div>
+        </div>
+        <div class="sync-step">
+          <div class="sync-spine">
+            <div class="sync-dot">📥</div>
+            <div class="sync-line"></div>
+          </div>
+          <div class="sync-content">
+            <div class="sync-title">تحميل البيانات الجديدة فقط</div>
+            <div class="sync-desc">إذا اختلفت البصمة يُحمَّل ملف KML المحدَّث ويُحفظ محلياً.</div>
+          </div>
+        </div>
+        <div class="sync-step">
+          <div class="sync-spine">
+            <div class="sync-dot">✅</div>
+          </div>
+          <div class="sync-content">
+            <div class="sync-title">جاهز للاستخدام</div>
+            <div class="sync-desc">تظهر الخريطة فوراً بأحدث البيانات المتاحة.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip" style="margin-top:32px">
+        <span class="tip-icon">💡</span>
+        <p class="tip-text">
+          <strong>ذكاء في استهلاك البيانات:</strong> النظام يحمّل البيانات الجديدة فقط عند الحاجة، مما يوفر باقة الإنترنت الخاصة بك.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Offline ─────────────────────────────────────────────────── -->
+    <section class="section" id="offline">
+      <div class="section-eyebrow">بدون إنترنت</div>
+      <h2 class="section-title">الوضع بدون إنترنت</h2>
+      <p class="section-desc">بعد أول تحميل ناجح، يعمل التطبيق بشكل كامل بدون الحاجة لاتصال بالإنترنت.</p>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🔍</div>
+          <div class="feature-title">البحث يعمل</div>
+          <p class="feature-desc">يمكنك البحث عن أي عمارة بالرقم بشكل كامل حتى بدون إنترنت.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🗺️</div>
+          <div class="feature-title">الخريطة تعمل جزئياً</div>
+          <p class="feature-desc">تظهر العلامات والمواقع دائماً. بلاطات الخريطة المخزنة مسبقاً تظهر، غيرها قد يظهر فارغاً.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🧭</div>
+          <div class="feature-title">الملاحة تتطلب إنترنت</div>
+          <p class="feature-desc">خرائط Google تحتاج اتصالاً للإرشادات الصوتية والمرور الفوري.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">🔄</div>
+          <div class="feature-title">التحديث يتطلب إنترنت</div>
+          <p class="feature-desc">للتحقق من وجود بيانات جديدة يلزم اتصال مؤقت عند بداية تشغيل التطبيق.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ────────────────────────────────────────────────────── -->
+    <section class="section" id="faq">
+      <div class="section-eyebrow">المساعدة</div>
+      <h2 class="section-title">الأسئلة الشائعة</h2>
+      <p class="section-desc">إجابات على الأسئلة الأكثر شيوعاً من المستخدمين.</p>
+
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q">
+            لماذا لا تظهر الخريطة عند أول تشغيل؟
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              يحتاج التطبيق لتحميل بيانات المنطقة في أول مرة. تأكد من اتصالك بالإنترنت واضغط "إعادة المحاولة" إذا ظهرت رسالة خطأ. بعد أول تحميل ناجح لن تحتاج إنترنت للبحث والاستعراض.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            كتبت رقم العمارة ولم تُوجَد — ماذا أفعل؟
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              تأكد من اختيار المشروع الصحيح من القائمة المنسدلة أولاً، ثم أعد المحاولة. تأكد أيضاً من كتابة الرقم فقط بدون حروف إضافية. التطبيق يدعم الأرقام العربية والإنجليزية على حدٍّ سواء.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            هل التطبيق يعمل بدون إنترنت؟
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              نعم، بعد التحميل الأول يعمل التطبيق بالكامل بدون إنترنت. البحث والاستعراض والخريطة كلها تعمل. الإنترنت يُستخدم فقط عند بداية تشغيل التطبيق للتحقق من وجود تحديثات جديدة.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            كيف أغير لون التطبيق أو حجم الخط؟
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              اضغط زر ⚙️ في الزاوية العلوية من الشاشة الرئيسية لفتح لوحة الإعدادات. من هناك يمكنك تغيير لون التمييز وحجم الخط ونمط الخريطة وشكل العلامات والبنايات المميزة.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            هل بياناتي الشخصية محفوظة؟
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              التطبيق لا يجمع أي بيانات شخصية. موقعك الجغرافي يُستخدم فقط محلياً لعرضه على الخريطة ولا يُرسل لأي خادم. الإعدادات تُحفظ فقط على جهازك.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            كيف تُضاف عمارات جديدة للتطبيق؟
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              العمارات الجديدة تُضاف من خلال نظام المزامنة التلقائي. عند إضافة عمارات جديدة يُحدَّث ملف البيانات على الخادم، وفي أول تشغيل للتطبيق بعد ذلك تُحمَّل البيانات الجديدة تلقائياً دون الحاجة لتحديث التطبيق.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">
+            ما الفرق بين أنماط الخريطة الثلاثة؟
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              القياسي: خريطة OpenStreetMap الداكنة المناسبة للاستخدام الليلي. الفاتح: خريطة بخلفية بيضاء أوضح في الضوء الساطع. القمر الصناعي: صور جوية حقيقية من ESRI لرؤية المنطقة من الأعلى.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Contact ────────────────────────────────────────────────── -->
+    <section class="section" id="contact">
+      <div class="section-eyebrow">التواصل</div>
+      <h2 class="section-title">تواصل معنا</h2>
+      <p class="section-desc">هل لديك سؤال أو اقتراح؟ يسعدنا مساعدتك.</p>
+
+      <div class="contact-grid">
+        <a href="tel:+201000000000" class="contact-card">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">الدعم الفني</div>
+            <div class="contact-value">+20 100 000 0000</div>
+          </div>
+        </a>
+        <a href="mailto:support@example.com" class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">البريد الإلكتروني</div>
+            <div class="contact-value">support@example.com</div>
+          </div>
+        </a>
+        <a href="https://facebook.com/example" target="_blank" rel="noopener" class="contact-card">
+          <div class="contact-icon">👥</div>
+          <div>
+            <div class="contact-label">التواصل الاجتماعي</div>
+            <div class="contact-value">صفحتنا على فيسبوك</div>
+          </div>
+        </a>
+      </div>
+
+      <div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--border);text-align:center">
+        <div class="version-badge">🧭 أطلس حدائق أكتوبر — الإصدار 1.0.0</div>
+        <p style="font-size:13px;color:var(--text-sec)">
+          © 2026 أطلس حدائق أكتوبر. جميع الحقوق محفوظة.
+        </p>
+      </div>
+      <div style="margin-top:24px;text-align:center">
+        <a href="/privacy-policy" style="color:var(--text-sec);font-size:13px;text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;">
+          🔒 سياسة الخصوصية
+        </a>
+     </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Back to top -->
+<button id="back-top" aria-label="العودة للأعلى">↑</button>
+
+<script>
+  // ── Mobile sidebar ────────────────────────────────────────────────────
+  const sidebar  = document.getElementById('sidebar');
+  const overlay  = document.getElementById('overlay');
+  const hamburger = document.getElementById('hamburger');
+
+  function openSidebar()  { sidebar.classList.add('open');  overlay.classList.add('open');  hamburger.textContent = '✕'; }
+  function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('open'); hamburger.textContent = '☰'; }
+
+  hamburger.addEventListener('click', () => sidebar.classList.contains('open') ? closeSidebar() : openSidebar());
+  overlay.addEventListener('click', closeSidebar);
+
+  // ── Active nav link on scroll ─────────────────────────────────────────
+  const sections  = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Close sidebar on nav click (mobile)
+  navLinks.forEach(link => link.addEventListener('click', closeSidebar));
+
+  // ── FAQ accordion ─────────────────────────────────────────────────────
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── Back to top ───────────────────────────────────────────────────────
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>
