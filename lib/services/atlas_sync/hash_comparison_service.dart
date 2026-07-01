@@ -1,4 +1,3 @@
-// hash_comparison_service.dart
 import 'package:district_navigation_app/services/atlas_sync/i_hash_comparison_service.dart';
 
 class HashComparisonService implements IHashComparisonService {

@@ -1,5 +1,3 @@
-// screens/main_screen.dart
-import 'package:district_navigation_app/providers/ad_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
@@ -9,15 +7,16 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:district_navigation_app/models/building.dart';
 import 'package:district_navigation_app/widgets/atlas_map.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
-import 'package:district_navigation_app/themes/app_dimensions.dart';
 import 'package:district_navigation_app/widgets/map_controls.dart';
 import 'package:district_navigation_app/widgets/atlas_footer.dart';
 import 'package:district_navigation_app/widgets/atlas_app_bar.dart';
+import 'package:district_navigation_app/providers/ad_provider.dart';
+import 'package:district_navigation_app/themes/app_dimensions.dart';
 import 'package:district_navigation_app/widgets/atlas_search_bar.dart';
 import 'package:district_navigation_app/widgets/featured_buildings.dart';
+import 'package:district_navigation_app/providers/settings_provider.dart';
 import 'package:district_navigation_app/widgets/building_bottom_sheet.dart';
 import 'package:district_navigation_app/providers/atlas_search_provider.dart';
-import 'package:district_navigation_app/providers/settings_provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

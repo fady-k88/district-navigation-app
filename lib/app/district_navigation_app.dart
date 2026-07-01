@@ -1,5 +1,5 @@
-import 'package:district_navigation_app/app/app_entry.dart';
 import 'package:flutter/material.dart';
+import 'package:district_navigation_app/app/app_entry.dart';
 
 class DistrictNavigationApp extends StatelessWidget {
   const DistrictNavigationApp({super.key});

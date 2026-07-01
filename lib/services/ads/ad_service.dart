@@ -1,4 +1,3 @@
-// services/ads/ad_service.dart
 import 'dart:io';
 
 class AdService {

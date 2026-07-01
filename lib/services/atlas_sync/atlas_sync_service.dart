@@ -1,9 +1,9 @@
 import 'package:district_navigation_app/models/building.dart';
+import 'package:district_navigation_app/services/atlas_sync/i_kml_parser_service.dart';
 import 'package:district_navigation_app/services/atlas_sync/i_remote_kml_service.dart';
 import 'package:district_navigation_app/services/atlas_sync/i_remote_hash_service.dart';
 import 'package:district_navigation_app/services/atlas_sync/i_local_storage_service.dart';
 import 'package:district_navigation_app/services/atlas_sync/i_hash_comparison_service.dart';
-import 'package:district_navigation_app/services/atlas_sync/i_kml_parser_service.dart';
 
 class AtlasSyncService {
   final IRemoteHashService _remoteHash;

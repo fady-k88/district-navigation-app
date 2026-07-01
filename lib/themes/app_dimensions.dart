@@ -1,4 +1,3 @@
-// themes/app_dimensions.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:district_navigation_app/providers/settings_provider.dart';

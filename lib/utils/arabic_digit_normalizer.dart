@@ -1,5 +1,3 @@
-// utils/arabic_digit_normalizer.dart
-
 class ArabicDigitNormalizer {
   ArabicDigitNormalizer._(); // prevent instantiation
 

@@ -1,4 +1,3 @@
-// widgets/atlas_app_bar.dart
 import 'package:district_navigation_app/providers/ad_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

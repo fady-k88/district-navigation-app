@@ -1,4 +1,3 @@
-// widgets/ads/banner_ad_widget.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';

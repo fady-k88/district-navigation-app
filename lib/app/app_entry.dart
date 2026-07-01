@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:district_navigation_app/providers/ad_provider.dart';
-import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
-import 'package:district_navigation_app/screens/loading_screen.dart';
-import 'package:district_navigation_app/screens/error_screen.dart';
 import 'package:district_navigation_app/screens/main_screen.dart';
+import 'package:district_navigation_app/screens/error_screen.dart';
+import 'package:district_navigation_app/providers/ad_provider.dart';
+import 'package:district_navigation_app/screens/loading_screen.dart';
+import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
 
 class AppEntry extends StatefulWidget {
   const AppEntry({super.key});
