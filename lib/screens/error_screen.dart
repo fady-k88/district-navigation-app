@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
 import 'package:district_navigation_app/themes/atlas_colors.dart';
 import 'package:district_navigation_app/themes/app_dimensions.dart';
+import 'package:district_navigation_app/providers/atlas_sync_provider.dart';
 
 class ErrorScreen extends StatelessWidget {
   final String message;
