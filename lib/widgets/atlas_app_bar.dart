@@ -135,14 +135,12 @@ class AtlasAppBar extends StatelessWidget {
 class _ToolbarIcon extends StatelessWidget {
   final IconData icon;
   final bool active;
-  final Color? accentColor; // optional — only provided for the active button
   final VoidCallback onTap;
   final AppDimensions d;
 
   const _ToolbarIcon({
     required this.icon,
     this.active = false,
-    this.accentColor,
     required this.onTap,
     required this.d,
   });
@@ -150,11 +148,7 @@ class _ToolbarIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(d.borderRadiusS * 0.8);
-    // Use the live accent color when provided, fall back to atlas amber
-    final bg = active
-        ? (accentColor ?? AtlasColors.accent)
-        : AtlasColors.surfaceLight;
-
+    final bg = active ? AtlasColors.accent : AtlasColors.surfaceLight;
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
