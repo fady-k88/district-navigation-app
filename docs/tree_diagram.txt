@@ -1,0 +1,1302 @@
+Folder PATH listing for volume Local Disk
+Volume serial number is 000000A9 84D5:D747
+D:.
+�   .flutter-plugins-dependencies
+�   .gitignore
+�   .metadata
+�   analysis_options.yaml
+�   district_navigation_app.iml
+�   pubspec.lock
+�   pubspec.yaml
+�   README.md
+�   
++---assets
+�   +---icon
+�   �       app_icon.png
+�   �       
+�   +---splash
+�           splash.png
++---lib
+�   �   main.dart
+�   �   
+�   +---app
+�   �       app_entry.dart
+�   �       district_navigation_app.dart
+�   �       
+�   +---database
+�   +---models
+�   �       building.dart
+�   �       district.dart
+�   �       
+�   +---providers
+�   �       ad_provider.dart
+�   �       atlas_search_provider.dart
+�   �       atlas_sync_provider.dart
+�   �       settings_provider.dart
+�   �       
+�   +---repositories
+�   �       atlas_repository.dart
+�   �       
+�   +---screens
+�   �       error_screen.dart
+�   �       loading_screen.dart
+�   �       main_screen.dart
+�   �       
+�   +---services
+�   �   +---ads
+�   �   �       ad_service.dart
+�   �   �       
+�   �   +---atlas_sync
+�   �   �       atlas_sync_service.dart
+�   �   �       hash_comparison_service.dart
+�   �   �       i_hash_comparison_service.dart
+�   �   �       i_kml_parser_service.dart
+�   �   �       i_local_storage_service.dart
+�   �   �       i_remote_hash_service.dart
+�   �   �       i_remote_kml_service.dart
+�   �   �       kml_parser_service.dart
+�   �   �       local_storage_service.dart
+�   �   �       remote_hash_service.dart
+�   �   �       remote_kml_service.dart
+�   �   �       
+�   �   +---url_launch
+�   �           url_launcher_service.dart
+�   �           
+�   +---themes
+�   �       app_dimensions.dart
+�   �       atlas_colors.dart
+�   �       
+�   +---utils
+�   �       arabic_digit_normalizer.dart
+�   �       
+�   +---widgets
+�           atlas_app_bar.dart
+�           atlas_footer.dart
+�           atlas_map.dart
+�           atlas_search_bar.dart
+�           banner_ad_widget.dart
+�           building_bottom_sheet.dart
+�           featured_buildings.dart
+�           info_sheet.dart
+�           map_controls.dart
+�           settings_bottom_sheet.dart
+�           
++---linux
+�   �   .gitignore
+�   �   CMakeLists.txt
+�   �   
+�   +---flutter
+�   �   �   CMakeLists.txt
+�   �   �   generated_plugins.cmake
+�   �   �   generated_plugin_registrant.cc
+�   �   �   generated_plugin_registrant.h
+�   �   �   
+�   �   +---ephemeral
+�   �       +---.plugin_symlinks
+�   �           +---geolocator_linux
+�   �           �   �   analysis_options.yaml
+�   �           �   �   AUTHORS
+�   �           �   �   CHANGELOG.md
+�   �           �   �   LICENSE
+�   �           �   �   pubspec.yaml
+�   �           �   �   README.md
+�   �           �   �   
+�   �           �   +---example
+�   �           �   �   �   analysis_options.yaml
+�   �           �   �   �   pubspec.yaml
+�   �           �   �   �   README.md
+�   �           �   �   �   
+�   �           �   �   +---lib
+�   �           �   �   �       main.dart
+�   �           �   �   �       
+�   �           �   �   +---linux
+�   �           �   �   �   �   CMakeLists.txt
+�   �           �   �   �   �   main.cc
+�   �           �   �   �   �   my_application.cc
+�   �           �   �   �   �   my_application.h
+�   �           �   �   �   �   
+�   �           �   �   �   +---flutter
+�   �           �   �   �           CMakeLists.txt
+�   �           �   �   �           generated_plugins.cmake
+�   �           �   �   �           generated_plugin_registrant.cc
+�   �           �   �   �           generated_plugin_registrant.h
+�   �           �   �   �           
+�   �           �   �   +---res
+�   �           �   �       +---images
+�   �           �   �               baseflow_logo_def_light-02.png
+�   �           �   �               poweredByBaseflowLogoLight.png
+�   �           �   �               poweredByBaseflowLogoLight@2x.png
+�   �           �   �               poweredByBaseflowLogoLight@3x.png
+�   �           �   �               poweredByBaseflowLogoLight_2020-06-23.zip
+�   �           �   �               
+�   �           �   +---lib
+�   �           �   �   �   geolocator_linux.dart
+�   �           �   �   �   
+�   �           �   �   +---src
+�   �           �   �           geoclue_x.dart
+�   �           �   �           geolocator_gnome.dart
+�   �           �   �           geolocator_linux.dart
+�   �           �   �           
+�   �           �   +---test
+�   �           �           geoclue_x_test.dart
+�   �           �           geolocator_gnome_test.dart
+�   �           �           geolocator_gnome_test.mocks.dart
+�   �           �           geolocator_linux_test.dart
+�   �           �           geolocator_linux_test.mocks.dart
+�   �           �           
+�   �           +---package_info_plus
+�   �           �   �   CHANGELOG.md
+�   �           �   �   LICENSE
+�   �           �   �   pubspec.yaml
+�   �           �   �   README.md
+�   �           �   �   
+�   �           �   +---android
+�   �           �   �   �   build.gradle
+�   �           �   �   �   gradle.properties
+�   �           �   �   �   settings.gradle
+�   �           �   �   �   
+�   �           �   �   +---src
+�   �           �   �       +---main
+�   �           �   �           �   AndroidManifest.xml
+�   �           �   �           �   
+�   �           �   �           +---kotlin
+�   �           �   �               +---dev
+�   �           �   �                   +---fluttercommunity
+�   �           �   �                       +---plus
+�   �           �   �                           +---packageinfo
+�   �           �   �                                   PackageInfoPlugin.kt
+�   �           �   �                                   
+�   �           �   +---example
+�   �           �   �   �   analysis_options.yaml
+�   �           �   �   �   build.yaml
+�   �           �   �   �   pubspec.yaml
+�   �           �   �   �   README.md
+�   �           �   �   �   
+�   �           �   �   +---android
+�   �           �   �   �   �   build.gradle
+�   �           �   �   �   �   gradle.properties
+�   �           �   �   �   �   settings.gradle
+�   �           �   �   �   �   
+�   �           �   �   �   +---app
+�   �           �   �   �   �   �   build.gradle
+�   �           �   �   �   �   �   
+�   �           �   �   �   �   +---src
+�   �           �   �   �   �       +---androidTest
+�   �           �   �   �   �       �   +---java
+�   �           �   �   �   �       �       +---io
+�   �           �   �   �   �       �           +---flutter
+�   �           �   �   �   �       �               +---plugins
+�   �           �   �   �   �       �                   +---packageinfoexample
+�   �           �   �   �   �       �                           EmbedderV1ActivityTest.java
+�   �           �   �   �   �       �                           MainActivityTest.java
+�   �           �   �   �   �       �                           
+�   �           �   �   �   �       +---main
+�   �           �   �   �   �           �   AndroidManifest.xml
+�   �           �   �   �   �           �   
+�   �           �   �   �   �           +---java
+�   �           �   �   �   �           �   +---io
+�   �           �   �   �   �           �       +---flutter
+�   �           �   �   �   �           �           +---plugins
+�   �           �   �   �   �           +---res
+�   �           �   �   �   �               +---mipmap-hdpi
+�   �           �   �   �   �               �       ic_launcher.png
+�   �           �   �   �   �               �       
+�   �           �   �   �   �               +---mipmap-mdpi
+�   �           �   �   �   �               �       ic_launcher.png
+�   �           �   �   �   �               �       
+�   �           �   �   �   �               +---mipmap-xhdpi
+�   �           �   �   �   �               �       ic_launcher.png
+�   �           �   �   �   �               �       
+�   �           �   �   �   �               +---mipmap-xxhdpi
+�   �           �   �   �   �               �       ic_launcher.png
+�   �           �   �   �   �               �       
+�   �           �   �   �   �               +---mipmap-xxxhdpi
+�   �           �   �   �   �                       ic_launcher.png
+�   �           �   �   �   �                       
+�   �           �   �   �   +---gradle
+�   �           �   �   �       +---wrapper
+�   �           �   �   �               gradle-wrapper.properties
+�   �           �   �   �               
+�   �           �   �   +---integration_test
+�   �           �   �   �       driver.dart
+�   �           �   �   �       package_info_plus_test.dart
+�   �           �   �   �       package_info_plus_web_test.dart
+�   �           �   �   �       package_info_plus_web_test.mocks.dart
+�   �           �   �   �       
+�   �           �   �   +---ios
+�   �           �   �   �   +---Flutter
+�   �           �   �   �   �       AppFrameworkInfo.plist
+�   �           �   �   �   �       Debug.xcconfig
+�   �           �   �   �   �       Release.xcconfig
+�   �           �   �   �   �       
+�   �           �   �   �   +---Runner
+�   �           �   �   �   �   �   AppDelegate.swift
+�   �           �   �   �   �   �   Info.plist
+�   �           �   �   �   �   �   Runner-Bridging-Header.h
+�   �           �   �   �   �   �   
+�   �           �   �   �   �   +---Assets.xcassets
+�   �           �   �   �   �   �   +---AppIcon.appiconset
+�   �           �   �   �   �   �   �       Contents.json
+�   �           �   �   �   �   �   �       Icon-App-1024x1024@1x.png
+�   �           �   �   �   �   �   �       Icon-App-20x20@1x.png
+�   �           �   �   �   �   �   �       Icon-App-20x20@2x.png
+�   �           �   �   �   �   �   �       Icon-App-20x20@3x.png
+�   �           �   �   �   �   �   �       Icon-App-29x29@1x.png
+�   �           �   �   �   �   �   �       Icon-App-29x29@2x.png
+�   �           �   �   �   �   �   �       Icon-App-29x29@3x.png
+�   �           �   �   �   �   �   �       Icon-App-40x40@1x.png
+�   �           �   �   �   �   �   �       Icon-App-40x40@2x.png
+�   �           �   �   �   �   �   �       Icon-App-40x40@3x.png
+�   �           �   �   �   �   �   �       Icon-App-60x60@2x.png
+�   �           �   �   �   �   �   �       Icon-App-60x60@3x.png
+�   �           �   �   �   �   �   �       Icon-App-76x76@1x.png
+�   �           �   �   �   �   �   �       Icon-App-76x76@2x.png
+�   �           �   �   �   �   �   �       Icon-App-83.5x83.5@2x.png
+�   �           �   �   �   �   �   �       
+�   �           �   �   �   �   �   +---LaunchImage.imageset
+�   �           �   �   �   �   �           Contents.json
+�   �           �   �   �   �   �           LaunchImage.png
+�   �           �   �   �   �   �           LaunchImage@2x.png
+�   �           �   �   �   �   �           LaunchImage@3x.png
+�   �           �   �   �   �   �           README.md
+�   �           �   �   �   �   �           
+�   �           �   �   �   �   +---Base.lproj
+�   �           �   �   �   �           LaunchScreen.storyboard
+�   �           �   �   �   �           Main.storyboard
+�   �           �   �   �   �           
+�   �           �   �   �   +---Runner.xcodeproj
+�   �           �   �   �   �   �   project.pbxproj
+�   �           �   �   �   �   �   
+�   �           �   �   �   �   +---project.xcworkspace
+�   �           �   �   �   �   �   �   contents.xcworkspacedata
+�   �           �   �   �   �   �   �   
+�   �           �   �   �   �   �   +---xcshareddata
+�   �           �   �   �   �   �       �   IDEWorkspaceChecks.plist
+�   �           �   �   �   �   �       �   WorkspaceSettings.xcsettings
+�   �           �   �   �   �   �       �   
+�   �           �   �   �   �   �       +---swiftpm
+�   �           �   �   �   �   �           +---configuration
+�   �           �   �   �   �   +---xcshareddata
+�   �           �   �   �   �       +---xcschemes
+�   �           �   �   �   �               Runner.xcscheme
+�   �           �   �   �   �               
+�   �           �   �   �   +---Runner.xcworkspace
+�   �           �   �   �   �   �   contents.xcworkspacedata
+�   �           �   �   �   �   �   
+�   �           �   �   �   �   +---xcshareddata
+�   �           �   �   �   �       �   IDEWorkspaceChecks.plist
+�   �           �   �   �   �       �   WorkspaceSettings.xcsettings
+�   �           �   �   �   �       �   
+�   �           �   �   �   �       +---swiftpm
+�   �           �   �   �   �           +---configuration
+�   �           �   �   �   +---RunnerTests
+�   �           �   �   �           RunnerTests.swift
+�   �           �   �   �           
+�   �           �   �   +---lib
+�   �           �   �   �       main.dart
+�   �           �   �   �       
+�   �           �   �   +---linux
+�   �           �   �   �   �   CMakeLists.txt
+�   �           �   �   �   �   main.cc
+�   �           �   �   �   �   my_application.cc
+�   �           �   �   �   �   my_application.h
+�   �           �   �   �   �   
+�   �           �   �   �   +---flutter
+�   �           �   �   �           CMakeLists.txt
+�   �           �   �   �           
+�   �           �   �   +---macos
+�   �           �   �   �   +---Flutter
+�   �           �   �   �   �       Flutter-Debug.xcconfig
+�   �           �   �   �   �       Flutter-Release.xcconfig
+�   �           �   �   �   �       
+�   �           �   �   �   +---Runner
+�   �           �   �   �   �   �   AppDelegate.swift
+�   �           �   �   �   �   �   DebugProfile.entitlements
+�   �           �   �   �   �   �   Info.plist
+�   �           �   �   �   �   �   MainFlutterWindow.swift
+�   �           �   �   �   �   �   Release.entitlements
+�   �           �   �   �   �   �   
+�   �           �   �   �   �   +---Assets.xcassets
+�   �           �   �   �   �   �   +---AppIcon.appiconset
+�   �           �   �   �   �   �           app_icon_1024.png
+�   �           �   �   �   �   �           app_icon_128.png
+�   �           �   �   �   �   �           app_icon_16.png
+�   �           �   �   �   �   �           app_icon_256.png
+�   �           �   �   �   �   �           app_icon_32.png
+�   �           �   �   �   �   �           app_icon_512.png
+�   �           �   �   �   �   �           app_icon_64.png
+�   �           �   �   �   �   �           Contents.json
+�   �           �   �   �   �   �           
+�   �           �   �   �   �   +---Base.lproj
+�   �           �   �   �   �   �       MainMenu.xib
+�   �           �   �   �   �   �       
+�   �           �   �   �   �   +---Configs
+�   �           �   �   �   �           AppInfo.xcconfig
+�   �           �   �   �   �           Debug.xcconfig
+�   �           �   �   �   �           Release.xcconfig
+�   �           �   �   �   �           Warnings.xcconfig
+�   �           �   �   �   �           
+�   �           �   �   �   +---Runner.xcodeproj
+�   �           �   �   �   �   �   project.pbxproj
+�   �           �   �   �   �   �   
+�   �           �   �   �   �   +---project.xcworkspace
+�   �           �   �   �   �   �   +---xcshareddata
+�   �           �   �   �   �   �       �   IDEWorkspaceChecks.plist
+�   �           �   �   �   �   �       �   
+�   �           �   �   �   �   �       +---swiftpm
+�   �           �   �   �   �   �           +---configuration
+�   �           �   �   �   �   +---xcshareddata
+�   �           �   �   �   �       +---xcschemes
+�   �           �   �   �   �               Runner.xcscheme
+�   �           �   �   �   �               
+�   �           �   �   �   +---Runner.xcworkspace
+�   �           �   �   �   �   �   contents.xcworkspacedata
+�   �           �   �   �   �   �   
+�   �           �   �   �   �   +---xcshareddata
+�   �           �   �   �   �       �   IDEWorkspaceChecks.plist
+�   �           �   �   �   �       �   
+�   �           �   �   �   �       +---swiftpm
+�   �           �   �   �   �           +---configuration
+�   �           �   �   �   +---RunnerTests
+�   �           �   �   �           RunnerTests.swift
+�   �           �   �   �           
+�   �           �   �   +---web
+�   �           �   �   �   �   favicon.png
+�   �           �   �   �   �   index.html
+�   �           �   �   �   �   manifest.json
+�   �           �   �   �   �   
+�   �           �   �   �   +---icons
+�   �           �   �   �           Icon-192.png
+�   �           �   �   �           Icon-512.png
+�   �           �   �   �           Icon-maskable-192.png
+�   �           �   �   �           Icon-maskable-512.png
+�   �           �   �   �           
+�   �           �   �   +---windows
+�   �           �   �       �   CMakeLists.txt
+�   �           �   �       �   
+�   �           �   �       +---flutter
+�   �           �   �       �       CMakeLists.txt
+�   �           �   �       �       
+�   �           �   �       +---runner
+�   �           �   �           �   CMakeLists.txt
+�   �           �   �           �   flutter_window.cpp
+�   �           �   �           �   flutter_window.h
+�   �           �   �           �   main.cpp
+�   �           �   �           �   resource.h
+�   �           �   �           �   runner.exe.manifest
+�   �           �   �           �   Runner.rc
+�   �           �   �           �   utils.cpp
+�   �           �   �           �   utils.h
+�   �           �   �           �   win32_window.cpp
+�   �           �   �           �   win32_window.h
+�   �           �   �           �   
+�   �           �   �           +---resources
+�   �           �   �                   app_icon.ico
+�   �           �   �                   
+�   �           �   +---ios
+�   �           �   �   �   package_info_plus.podspec
+�   �           �   �   �   
+�   �           �   �   +---package_info_plus
+�   �           �   �       �   Package.swift
+�   �           �   �       �   
+�   �           �   �       +---Sources
+�   �           �   �           +---package_info_plus
+�   �           �   �               �   FPPPackageInfoPlusPlugin.m
+�   �           �   �               �   PrivacyInfo.xcprivacy
+�   �           �   �               �   
+�   �           �   �               +---include
+�   �           �   �                   +---package_info_plus
+�   �           �   �                           FPPPackageInfoPlusPlugin.h
+�   �           �   �                           
+�   �           �   +---lib
+�   �           �   �   �   package_info_plus.dart
+�   �           �   �   �   
+�   �           �   �   +---src
+�   �           �   �           file_attribute.dart
+�   �           �   �           file_version_info.dart
+�   �           �   �           package_info_plus_linux.dart
+�   �           �   �           package_info_plus_macos.dart
+�   �           �   �           package_info_plus_web.dart
+�   �           �   �           package_info_plus_windows.dart
+�   �           �   �           
+�   �           �   +---macos
+�   �           �   �   �   package_info_plus.podspec
+�   �           �   �   �   
+�   �           �   �   +---package_info_plus
+�   �           �   �       �   Package.swift
+�   �           �   �       �   
+�   �           �   �       +---Sources
+�   �           �   �           +---package_info_plus
+�   �           �   �               �   FPPPackageInfoPlusPlugin.m
+�   �           �   �               �   PrivacyInfo.xcprivacy
+�   �           �   �               �   
+�   �           �   �               +---include
+�   �           �   �                   +---package_info_plus
+�   �           �   �                           FPPPackageInfoPlusPlugin.h
+�   �           �   �                           
+�   �           �   +---test
+�   �           �           package_info_plus_linux_test.dart
+�   �           �           package_info_plus_windows_test.dart
+�   �           �           package_info_test.dart
+�   �           �           
+�   �           +---path_provider_linux
+�   �           �   �   AUTHORS
+�   �           �   �   CHANGELOG.md
+�   �           �   �   LICENSE
+�   �           �   �   pubspec.yaml
+�   �           �   �   README.md
+�   �           �   �   
+�   �           �   +---example
+�   �           �   �   �   pubspec.yaml
+�   �           �   �   �   README.md
+�   �           �   �   �   
+�   �           �   �   +---integration_test
+�   �           �   �   �       path_provider_test.dart
+�   �           �   �   �       
+�   �           �   �   +---lib
+�   �           �   �   �       main.dart
+�   �           �   �   �       
+�   �           �   �   +---linux
+�   �           �   �   �   �   CMakeLists.txt
+�   �           �   �   �   �   main.cc
+�   �           �   �   �   �   my_application.cc
+�   �           �   �   �   �   my_application.h
+�   �           �   �   �   �   
+�   �           �   �   �   +---flutter
+�   �           �   �   �           CMakeLists.txt
+�   �           �   �   �           generated_plugins.cmake
+�   �           �   �   �           
+�   �           �   �   +---test_driver
+�   �           �   �           integration_test.dart
+�   �           �   �           
+�   �           �   +---lib
+�   �           �   �   �   path_provider_linux.dart
+�   �           �   �   �   
+�   �           �   �   +---src
+�   �           �   �           get_application_id.dart
+�   �           �   �           get_application_id_real.dart
+�   �           �   �           get_application_id_stub.dart
+�   �           �   �           path_provider_linux.dart
+�   �           �   �           
+�   �           �   +---test
+�   �           �           get_application_id_test.dart
+�   �           �           path_provider_linux_test.dart
+�   �           �           
+�   �           +---shared_preferences_linux
+�   �           �   �   AUTHORS
+�   �           �   �   CHANGELOG.md
+�   �           �   �   LICENSE
+�   �           �   �   pubspec.yaml
+�   �           �   �   README.md
+�   �           �   �   
+�   �           �   +---example
+�   �           �   �   �   pubspec.yaml
+�   �           �   �   �   README.md
+�   �           �   �   �   
+�   �           �   �   +---integration_test
+�   �           �   �   �       shared_preferences_test.dart
+�   �           �   �   �       
+�   �           �   �   +---lib
+�   �           �   �   �       main.dart
+�   �           �   �   �       
+�   �           �   �   +---linux
+�   �           �   �   �   �   CMakeLists.txt
+�   �           �   �   �   �   main.cc
+�   �           �   �   �   �   my_application.cc
+�   �           �   �   �   �   my_application.h
+�   �           �   �   �   �   
+�   �           �   �   �   +---flutter
+�   �           �   �   �           CMakeLists.txt
+�   �           �   �   �           generated_plugins.cmake
+�   �           �   �   �           
+�   �           �   �   +---test_driver
+�   �           �   �           integration_test.dart
+�   �           �   �           
+�   �           �   +---lib
+�   �           �   �       shared_preferences_linux.dart
+�   �           �   �       
+�   �           �   +---test
+�   �           �           fake_path_provider_linux.dart
+�   �           �           legacy_shared_preferences_linux_test.dart
+�   �           �           shared_preferences_linux_async_test.dart
+�   �           �           
+�   �           +---url_launcher_linux
+�   �               �   AUTHORS
+�   �               �   CHANGELOG.md
+�   �               �   LICENSE
+�   �               �   pubspec.yaml
+�   �               �   README.md
+�   �               �   
+�   �               +---example
+�   �               �   �   pubspec.yaml
+�   �               �   �   README.md
+�   �               �   �   
+�   �               �   +---integration_test
+�   �               �   �       url_launcher_test.dart
+�   �               �   �       
+�   �               �   +---lib
+�   �               �   �       main.dart
+�   �               �   �       
+�   �               �   +---linux
+�   �               �   �   �   CMakeLists.txt
+�   �               �   �   �   main.cc
+�   �               �   �   �   my_application.cc
+�   �               �   �   �   my_application.h
+�   �               �   �   �   
+�   �               �   �   +---flutter
+�   �               �   �           CMakeLists.txt
+�   �               �   �           generated_plugins.cmake
+�   �               �   �           
+�   �               �   +---test_driver
+�   �               �           integration_test.dart
+�   �               �           
+�   �               +---lib
+�   �               �   �   url_launcher_linux.dart
+�   �               �   �   
+�   �               �   +---src
+�   �               �           messages.g.dart
+�   �               �           
+�   �               +---linux
+�   �               �   �   CMakeLists.txt
+�   �               �   �   messages.g.cc
+�   �               �   �   messages.g.h
+�   �               �   �   url_launcher_plugin.cc
+�   �               �   �   url_launcher_plugin_private.h
+�   �               �   �   
+�   �               �   +---include
+�   �               �   �   +---url_launcher_linux
+�   �               �   �           url_launcher_plugin.h
+�   �               �   �           
+�   �               �   +---test
+�   �               �           url_launcher_linux_test.cc
+�   �               �           
+�   �               +---pigeons
+�   �               �       copyright.txt
+�   �               �       messages.dart
+�   �               �       
+�   �               +---test
+�   �                       url_launcher_linux_test.dart
+�   �                       
+�   +---runner
+�           CMakeLists.txt
+�           main.cc
+�           my_application.cc
+�           my_application.h
+�           
++---macos
+�   �   .gitignore
+�   �   
+�   +---Flutter
+�   �   �   Flutter-Debug.xcconfig
+�   �   �   Flutter-Release.xcconfig
+�   �   �   GeneratedPluginRegistrant.swift
+�   �   �   
+�   �   +---ephemeral
+�   �           Flutter-Generated.xcconfig
+�   �           flutter_export_environment.sh
+�   �           
+�   +---Runner
+�   �   �   AppDelegate.swift
+�   �   �   DebugProfile.entitlements
+�   �   �   Info.plist
+�   �   �   MainFlutterWindow.swift
+�   �   �   Release.entitlements
+�   �   �   
+�   �   +---Assets.xcassets
+�   �   �   +---AppIcon.appiconset
+�   �   �           app_icon_1024.png
+�   �   �           app_icon_128.png
+�   �   �           app_icon_16.png
+�   �   �           app_icon_256.png
+�   �   �           app_icon_32.png
+�   �   �           app_icon_512.png
+�   �   �           app_icon_64.png
+�   �   �           Contents.json
+�   �   �           
+�   �   +---Base.lproj
+�   �   �       MainMenu.xib
+�   �   �       
+�   �   +---Configs
+�   �           AppInfo.xcconfig
+�   �           Debug.xcconfig
+�   �           Release.xcconfig
+�   �           Warnings.xcconfig
+�   �           
+�   +---Runner.xcodeproj
+�   �   �   project.pbxproj
+�   �   �   
+�   �   +---project.xcworkspace
+�   �   �   +---xcshareddata
+�   �   �           IDEWorkspaceChecks.plist
+�   �   �           
+�   �   +---xcshareddata
+�   �       +---xcschemes
+�   �               Runner.xcscheme
+�   �               
+�   +---Runner.xcworkspace
+�   �   �   contents.xcworkspacedata
+�   �   �   
+�   �   +---xcshareddata
+�   �           IDEWorkspaceChecks.plist
+�   �           
+�   +---RunnerTests
+�           RunnerTests.swift
+�           
++---test
+�       widget_test.dart
+�       
++---web
+�   �   favicon.png
+�   �   index.html
+�   �   manifest.json
+�   �   
+�   +---icons
+�   �       Icon-192.png
+�   �       Icon-512.png
+�   �       Icon-maskable-192.png
+�   �       Icon-maskable-512.png
+�   �       
+�   +---splash
+�       +---img
+�               dark-1x.png
+�               dark-2x.png
+�               dark-3x.png
+�               dark-4x.png
+�               light-1x.png
+�               light-2x.png
+�               light-3x.png
+�               light-4x.png
+�               
++---website
+�   �   index.html
+�   �   privacy_policy.html
+�   �   README.md
+�   �   
+�   +---icon
+�           app_icon.png
+�           
++---windows
+    �   .gitignore
+    �   CMakeLists.txt
+    �   
+    +---flutter
+    �   �   CMakeLists.txt
+    �   �   generated_plugins.cmake
+    �   �   generated_plugin_registrant.cc
+    �   �   generated_plugin_registrant.h
+    �   �   
+    �   +---ephemeral
+    �       �   flutter_export.h
+    �       �   flutter_messenger.h
+    �       �   flutter_plugin_registrar.h
+    �       �   flutter_texture_registrar.h
+    �       �   flutter_windows.dll
+    �       �   flutter_windows.dll.exp
+    �       �   flutter_windows.dll.lib
+    �       �   flutter_windows.dll.pdb
+    �       �   flutter_windows.h
+    �       �   generated_config.cmake
+    �       �   icudtl.dat
+    �       �   
+    �       +---.plugin_symlinks
+    �       �   +---geolocator_windows
+    �       �   �   �   analysis_options.yaml
+    �       �   �   �   AUTHORS
+    �       �   �   �   CHANGELOG.md
+    �       �   �   �   LICENSE
+    �       �   �   �   pubspec.yaml
+    �       �   �   �   README.md
+    �       �   �   �   
+    �       �   �   +---example
+    �       �   �   �   �   pubspec.yaml
+    �       �   �   �   �   README.md
+    �       �   �   �   �   
+    �       �   �   �   +---lib
+    �       �   �   �   �       main.dart
+    �       �   �   �   �       
+    �       �   �   �   +---res
+    �       �   �   �   �   +---images
+    �       �   �   �   �           baseflow_logo_def_light-02.png
+    �       �   �   �   �           poweredByBaseflowLogoLight.png
+    �       �   �   �   �           poweredByBaseflowLogoLight@2x.png
+    �       �   �   �   �           poweredByBaseflowLogoLight@3x.png
+    �       �   �   �   �           poweredByBaseflowLogoLight_2020-06-23.zip
+    �       �   �   �   �           
+    �       �   �   �   +---windows
+    �       �   �   �       �   CMakeLists.txt
+    �       �   �   �       �   
+    �       �   �   �       +---flutter
+    �       �   �   �       �       CMakeLists.txt
+    �       �   �   �       �       generated_plugins.cmake
+    �       �   �   �       �       generated_plugin_registrant.cc
+    �       �   �   �       �       generated_plugin_registrant.h
+    �       �   �   �       �       
+    �       �   �   �       +---runner
+    �       �   �   �           �   CMakeLists.txt
+    �       �   �   �           �   flutter_window.cpp
+    �       �   �   �           �   flutter_window.h
+    �       �   �   �           �   main.cpp
+    �       �   �   �           �   resource.h
+    �       �   �   �           �   runner.exe.manifest
+    �       �   �   �           �   Runner.rc
+    �       �   �   �           �   utils.cpp
+    �       �   �   �           �   utils.h
+    �       �   �   �           �   win32_window.cpp
+    �       �   �   �           �   win32_window.h
+    �       �   �   �           �   
+    �       �   �   �           +---resources
+    �       �   �   �                   app_icon.ico
+    �       �   �   �                   
+    �       �   �   +---windows
+    �       �   �       �   CMakeLists.txt
+    �       �   �       �   geolocator_enums.h
+    �       �   �       �   geolocator_plugin.cpp
+    �       �   �       �   geolocator_plugin.h
+    �       �   �       �   geolocator_windows.cpp
+    �       �   �       �   
+    �       �   �       +---include
+    �       �   �           +---geolocator_windows
+    �       �   �                   geolocator_windows.h
+    �       �   �                   
+    �       �   +---package_info_plus
+    �       �   �   �   CHANGELOG.md
+    �       �   �   �   LICENSE
+    �       �   �   �   pubspec.yaml
+    �       �   �   �   README.md
+    �       �   �   �   
+    �       �   �   +---android
+    �       �   �   �   �   build.gradle
+    �       �   �   �   �   gradle.properties
+    �       �   �   �   �   settings.gradle
+    �       �   �   �   �   
+    �       �   �   �   +---src
+    �       �   �   �       +---main
+    �       �   �   �           �   AndroidManifest.xml
+    �       �   �   �           �   
+    �       �   �   �           +---kotlin
+    �       �   �   �               +---dev
+    �       �   �   �                   +---fluttercommunity
+    �       �   �   �                       +---plus
+    �       �   �   �                           +---packageinfo
+    �       �   �   �                                   PackageInfoPlugin.kt
+    �       �   �   �                                   
+    �       �   �   +---example
+    �       �   �   �   �   analysis_options.yaml
+    �       �   �   �   �   build.yaml
+    �       �   �   �   �   pubspec.yaml
+    �       �   �   �   �   README.md
+    �       �   �   �   �   
+    �       �   �   �   +---android
+    �       �   �   �   �   �   build.gradle
+    �       �   �   �   �   �   gradle.properties
+    �       �   �   �   �   �   settings.gradle
+    �       �   �   �   �   �   
+    �       �   �   �   �   +---app
+    �       �   �   �   �   �   �   build.gradle
+    �       �   �   �   �   �   �   
+    �       �   �   �   �   �   +---src
+    �       �   �   �   �   �       +---androidTest
+    �       �   �   �   �   �       �   +---java
+    �       �   �   �   �   �       �       +---io
+    �       �   �   �   �   �       �           +---flutter
+    �       �   �   �   �   �       �               +---plugins
+    �       �   �   �   �   �       �                   +---packageinfoexample
+    �       �   �   �   �   �       �                           EmbedderV1ActivityTest.java
+    �       �   �   �   �   �       �                           MainActivityTest.java
+    �       �   �   �   �   �       �                           
+    �       �   �   �   �   �       +---main
+    �       �   �   �   �   �           �   AndroidManifest.xml
+    �       �   �   �   �   �           �   
+    �       �   �   �   �   �           +---java
+    �       �   �   �   �   �           �   +---io
+    �       �   �   �   �   �           �       +---flutter
+    �       �   �   �   �   �           �           +---plugins
+    �       �   �   �   �   �           +---res
+    �       �   �   �   �   �               +---mipmap-hdpi
+    �       �   �   �   �   �               �       ic_launcher.png
+    �       �   �   �   �   �               �       
+    �       �   �   �   �   �               +---mipmap-mdpi
+    �       �   �   �   �   �               �       ic_launcher.png
+    �       �   �   �   �   �               �       
+    �       �   �   �   �   �               +---mipmap-xhdpi
+    �       �   �   �   �   �               �       ic_launcher.png
+    �       �   �   �   �   �               �       
+    �       �   �   �   �   �               +---mipmap-xxhdpi
+    �       �   �   �   �   �               �       ic_launcher.png
+    �       �   �   �   �   �               �       
+    �       �   �   �   �   �               +---mipmap-xxxhdpi
+    �       �   �   �   �   �                       ic_launcher.png
+    �       �   �   �   �   �                       
+    �       �   �   �   �   +---gradle
+    �       �   �   �   �       +---wrapper
+    �       �   �   �   �               gradle-wrapper.properties
+    �       �   �   �   �               
+    �       �   �   �   +---integration_test
+    �       �   �   �   �       driver.dart
+    �       �   �   �   �       package_info_plus_test.dart
+    �       �   �   �   �       package_info_plus_web_test.dart
+    �       �   �   �   �       package_info_plus_web_test.mocks.dart
+    �       �   �   �   �       
+    �       �   �   �   +---ios
+    �       �   �   �   �   +---Flutter
+    �       �   �   �   �   �       AppFrameworkInfo.plist
+    �       �   �   �   �   �       Debug.xcconfig
+    �       �   �   �   �   �       Release.xcconfig
+    �       �   �   �   �   �       
+    �       �   �   �   �   +---Runner
+    �       �   �   �   �   �   �   AppDelegate.swift
+    �       �   �   �   �   �   �   Info.plist
+    �       �   �   �   �   �   �   Runner-Bridging-Header.h
+    �       �   �   �   �   �   �   
+    �       �   �   �   �   �   +---Assets.xcassets
+    �       �   �   �   �   �   �   +---AppIcon.appiconset
+    �       �   �   �   �   �   �   �       Contents.json
+    �       �   �   �   �   �   �   �       Icon-App-1024x1024@1x.png
+    �       �   �   �   �   �   �   �       Icon-App-20x20@1x.png
+    �       �   �   �   �   �   �   �       Icon-App-20x20@2x.png
+    �       �   �   �   �   �   �   �       Icon-App-20x20@3x.png
+    �       �   �   �   �   �   �   �       Icon-App-29x29@1x.png
+    �       �   �   �   �   �   �   �       Icon-App-29x29@2x.png
+    �       �   �   �   �   �   �   �       Icon-App-29x29@3x.png
+    �       �   �   �   �   �   �   �       Icon-App-40x40@1x.png
+    �       �   �   �   �   �   �   �       Icon-App-40x40@2x.png
+    �       �   �   �   �   �   �   �       Icon-App-40x40@3x.png
+    �       �   �   �   �   �   �   �       Icon-App-60x60@2x.png
+    �       �   �   �   �   �   �   �       Icon-App-60x60@3x.png
+    �       �   �   �   �   �   �   �       Icon-App-76x76@1x.png
+    �       �   �   �   �   �   �   �       Icon-App-76x76@2x.png
+    �       �   �   �   �   �   �   �       Icon-App-83.5x83.5@2x.png
+    �       �   �   �   �   �   �   �       
+    �       �   �   �   �   �   �   +---LaunchImage.imageset
+    �       �   �   �   �   �   �           Contents.json
+    �       �   �   �   �   �   �           LaunchImage.png
+    �       �   �   �   �   �   �           LaunchImage@2x.png
+    �       �   �   �   �   �   �           LaunchImage@3x.png
+    �       �   �   �   �   �   �           README.md
+    �       �   �   �   �   �   �           
+    �       �   �   �   �   �   +---Base.lproj
+    �       �   �   �   �   �           LaunchScreen.storyboard
+    �       �   �   �   �   �           Main.storyboard
+    �       �   �   �   �   �           
+    �       �   �   �   �   +---Runner.xcodeproj
+    �       �   �   �   �   �   �   project.pbxproj
+    �       �   �   �   �   �   �   
+    �       �   �   �   �   �   +---project.xcworkspace
+    �       �   �   �   �   �   �   �   contents.xcworkspacedata
+    �       �   �   �   �   �   �   �   
+    �       �   �   �   �   �   �   +---xcshareddata
+    �       �   �   �   �   �   �       �   IDEWorkspaceChecks.plist
+    �       �   �   �   �   �   �       �   WorkspaceSettings.xcsettings
+    �       �   �   �   �   �   �       �   
+    �       �   �   �   �   �   �       +---swiftpm
+    �       �   �   �   �   �   �           +---configuration
+    �       �   �   �   �   �   +---xcshareddata
+    �       �   �   �   �   �       +---xcschemes
+    �       �   �   �   �   �               Runner.xcscheme
+    �       �   �   �   �   �               
+    �       �   �   �   �   +---Runner.xcworkspace
+    �       �   �   �   �   �   �   contents.xcworkspacedata
+    �       �   �   �   �   �   �   
+    �       �   �   �   �   �   +---xcshareddata
+    �       �   �   �   �   �       �   IDEWorkspaceChecks.plist
+    �       �   �   �   �   �       �   WorkspaceSettings.xcsettings
+    �       �   �   �   �   �       �   
+    �       �   �   �   �   �       +---swiftpm
+    �       �   �   �   �   �           +---configuration
+    �       �   �   �   �   +---RunnerTests
+    �       �   �   �   �           RunnerTests.swift
+    �       �   �   �   �           
+    �       �   �   �   +---lib
+    �       �   �   �   �       main.dart
+    �       �   �   �   �       
+    �       �   �   �   +---linux
+    �       �   �   �   �   �   CMakeLists.txt
+    �       �   �   �   �   �   main.cc
+    �       �   �   �   �   �   my_application.cc
+    �       �   �   �   �   �   my_application.h
+    �       �   �   �   �   �   
+    �       �   �   �   �   +---flutter
+    �       �   �   �   �           CMakeLists.txt
+    �       �   �   �   �           
+    �       �   �   �   +---macos
+    �       �   �   �   �   +---Flutter
+    �       �   �   �   �   �       Flutter-Debug.xcconfig
+    �       �   �   �   �   �       Flutter-Release.xcconfig
+    �       �   �   �   �   �       
+    �       �   �   �   �   +---Runner
+    �       �   �   �   �   �   �   AppDelegate.swift
+    �       �   �   �   �   �   �   DebugProfile.entitlements
+    �       �   �   �   �   �   �   Info.plist
+    �       �   �   �   �   �   �   MainFlutterWindow.swift
+    �       �   �   �   �   �   �   Release.entitlements
+    �       �   �   �   �   �   �   
+    �       �   �   �   �   �   +---Assets.xcassets
+    �       �   �   �   �   �   �   +---AppIcon.appiconset
+    �       �   �   �   �   �   �           app_icon_1024.png
+    �       �   �   �   �   �   �           app_icon_128.png
+    �       �   �   �   �   �   �           app_icon_16.png
+    �       �   �   �   �   �   �           app_icon_256.png
+    �       �   �   �   �   �   �           app_icon_32.png
+    �       �   �   �   �   �   �           app_icon_512.png
+    �       �   �   �   �   �   �           app_icon_64.png
+    �       �   �   �   �   �   �           Contents.json
+    �       �   �   �   �   �   �           
+    �       �   �   �   �   �   +---Base.lproj
+    �       �   �   �   �   �   �       MainMenu.xib
+    �       �   �   �   �   �   �       
+    �       �   �   �   �   �   +---Configs
+    �       �   �   �   �   �           AppInfo.xcconfig
+    �       �   �   �   �   �           Debug.xcconfig
+    �       �   �   �   �   �           Release.xcconfig
+    �       �   �   �   �   �           Warnings.xcconfig
+    �       �   �   �   �   �           
+    �       �   �   �   �   +---Runner.xcodeproj
+    �       �   �   �   �   �   �   project.pbxproj
+    �       �   �   �   �   �   �   
+    �       �   �   �   �   �   +---project.xcworkspace
+    �       �   �   �   �   �   �   +---xcshareddata
+    �       �   �   �   �   �   �       �   IDEWorkspaceChecks.plist
+    �       �   �   �   �   �   �       �   
+    �       �   �   �   �   �   �       +---swiftpm
+    �       �   �   �   �   �   �           +---configuration
+    �       �   �   �   �   �   +---xcshareddata
+    �       �   �   �   �   �       +---xcschemes
+    �       �   �   �   �   �               Runner.xcscheme
+    �       �   �   �   �   �               
+    �       �   �   �   �   +---Runner.xcworkspace
+    �       �   �   �   �   �   �   contents.xcworkspacedata
+    �       �   �   �   �   �   �   
+    �       �   �   �   �   �   +---xcshareddata
+    �       �   �   �   �   �       �   IDEWorkspaceChecks.plist
+    �       �   �   �   �   �       �   
+    �       �   �   �   �   �       +---swiftpm
+    �       �   �   �   �   �           +---configuration
+    �       �   �   �   �   +---RunnerTests
+    �       �   �   �   �           RunnerTests.swift
+    �       �   �   �   �           
+    �       �   �   �   +---web
+    �       �   �   �   �   �   favicon.png
+    �       �   �   �   �   �   index.html
+    �       �   �   �   �   �   manifest.json
+    �       �   �   �   �   �   
+    �       �   �   �   �   +---icons
+    �       �   �   �   �           Icon-192.png
+    �       �   �   �   �           Icon-512.png
+    �       �   �   �   �           Icon-maskable-192.png
+    �       �   �   �   �           Icon-maskable-512.png
+    �       �   �   �   �           
+    �       �   �   �   +---windows
+    �       �   �   �       �   CMakeLists.txt
+    �       �   �   �       �   
+    �       �   �   �       +---flutter
+    �       �   �   �       �       CMakeLists.txt
+    �       �   �   �       �       
+    �       �   �   �       +---runner
+    �       �   �   �           �   CMakeLists.txt
+    �       �   �   �           �   flutter_window.cpp
+    �       �   �   �           �   flutter_window.h
+    �       �   �   �           �   main.cpp
+    �       �   �   �           �   resource.h
+    �       �   �   �           �   runner.exe.manifest
+    �       �   �   �           �   Runner.rc
+    �       �   �   �           �   utils.cpp
+    �       �   �   �           �   utils.h
+    �       �   �   �           �   win32_window.cpp
+    �       �   �   �           �   win32_window.h
+    �       �   �   �           �   
+    �       �   �   �           +---resources
+    �       �   �   �                   app_icon.ico
+    �       �   �   �                   
+    �       �   �   +---ios
+    �       �   �   �   �   package_info_plus.podspec
+    �       �   �   �   �   
+    �       �   �   �   +---package_info_plus
+    �       �   �   �       �   Package.swift
+    �       �   �   �       �   
+    �       �   �   �       +---Sources
+    �       �   �   �           +---package_info_plus
+    �       �   �   �               �   FPPPackageInfoPlusPlugin.m
+    �       �   �   �               �   PrivacyInfo.xcprivacy
+    �       �   �   �               �   
+    �       �   �   �               +---include
+    �       �   �   �                   +---package_info_plus
+    �       �   �   �                           FPPPackageInfoPlusPlugin.h
+    �       �   �   �                           
+    �       �   �   +---lib
+    �       �   �   �   �   package_info_plus.dart
+    �       �   �   �   �   
+    �       �   �   �   +---src
+    �       �   �   �           file_attribute.dart
+    �       �   �   �           file_version_info.dart
+    �       �   �   �           package_info_plus_linux.dart
+    �       �   �   �           package_info_plus_macos.dart
+    �       �   �   �           package_info_plus_web.dart
+    �       �   �   �           package_info_plus_windows.dart
+    �       �   �   �           
+    �       �   �   +---macos
+    �       �   �   �   �   package_info_plus.podspec
+    �       �   �   �   �   
+    �       �   �   �   +---package_info_plus
+    �       �   �   �       �   Package.swift
+    �       �   �   �       �   
+    �       �   �   �       +---Sources
+    �       �   �   �           +---package_info_plus
+    �       �   �   �               �   FPPPackageInfoPlusPlugin.m
+    �       �   �   �               �   PrivacyInfo.xcprivacy
+    �       �   �   �               �   
+    �       �   �   �               +---include
+    �       �   �   �                   +---package_info_plus
+    �       �   �   �                           FPPPackageInfoPlusPlugin.h
+    �       �   �   �                           
+    �       �   �   +---test
+    �       �   �           package_info_plus_linux_test.dart
+    �       �   �           package_info_plus_windows_test.dart
+    �       �   �           package_info_test.dart
+    �       �   �           
+    �       �   +---path_provider_windows
+    �       �   �   �   AUTHORS
+    �       �   �   �   CHANGELOG.md
+    �       �   �   �   LICENSE
+    �       �   �   �   pubspec.yaml
+    �       �   �   �   README.md
+    �       �   �   �   
+    �       �   �   +---example
+    �       �   �   �   �   pubspec.yaml
+    �       �   �   �   �   README.md
+    �       �   �   �   �   
+    �       �   �   �   +---integration_test
+    �       �   �   �   �       path_provider_test.dart
+    �       �   �   �   �       
+    �       �   �   �   +---lib
+    �       �   �   �   �       main.dart
+    �       �   �   �   �       
+    �       �   �   �   +---test_driver
+    �       �   �   �   �       integration_test.dart
+    �       �   �   �   �       
+    �       �   �   �   +---windows
+    �       �   �   �       �   CMakeLists.txt
+    �       �   �   �       �   
+    �       �   �   �       +---flutter
+    �       �   �   �       �       CMakeLists.txt
+    �       �   �   �       �       generated_plugins.cmake
+    �       �   �   �       �       
+    �       �   �   �       +---runner
+    �       �   �   �           �   CMakeLists.txt
+    �       �   �   �           �   flutter_window.cpp
+    �       �   �   �           �   flutter_window.h
+    �       �   �   �           �   main.cpp
+    �       �   �   �           �   resource.h
+    �       �   �   �           �   runner.exe.manifest
+    �       �   �   �           �   Runner.rc
+    �       �   �   �           �   run_loop.cpp
+    �       �   �   �           �   run_loop.h
+    �       �   �   �           �   utils.cpp
+    �       �   �   �           �   utils.h
+    �       �   �   �           �   win32_window.cpp
+    �       �   �   �           �   win32_window.h
+    �       �   �   �           �   
+    �       �   �   �           +---resources
+    �       �   �   �                   app_icon.ico
+    �       �   �   �                   
+    �       �   �   +---lib
+    �       �   �   �   �   path_provider_windows.dart
+    �       �   �   �   �   
+    �       �   �   �   +---src
+    �       �   �   �           folders.dart
+    �       �   �   �           folders_stub.dart
+    �       �   �   �           guid.dart
+    �       �   �   �           path_provider_windows_real.dart
+    �       �   �   �           path_provider_windows_stub.dart
+    �       �   �   �           win32_wrappers.dart
+    �       �   �   �           
+    �       �   �   +---test
+    �       �   �           guid_test.dart
+    �       �   �           path_provider_windows_test.dart
+    �       �   �           
+    �       �   +---shared_preferences_windows
+    �       �   �   �   AUTHORS
+    �       �   �   �   CHANGELOG.md
+    �       �   �   �   LICENSE
+    �       �   �   �   pubspec.yaml
+    �       �   �   �   README.md
+    �       �   �   �   
+    �       �   �   +---example
+    �       �   �   �   �   AUTHORS
+    �       �   �   �   �   LICENSE
+    �       �   �   �   �   pubspec.yaml
+    �       �   �   �   �   README.md
+    �       �   �   �   �   
+    �       �   �   �   +---integration_test
+    �       �   �   �   �       shared_preferences_test.dart
+    �       �   �   �   �       
+    �       �   �   �   +---lib
+    �       �   �   �   �       main.dart
+    �       �   �   �   �       
+    �       �   �   �   +---test_driver
+    �       �   �   �   �       integration_test.dart
+    �       �   �   �   �       
+    �       �   �   �   +---windows
+    �       �   �   �       �   CMakeLists.txt
+    �       �   �   �       �   
+    �       �   �   �       +---flutter
+    �       �   �   �       �       CMakeLists.txt
+    �       �   �   �       �       generated_plugins.cmake
+    �       �   �   �       �       
+    �       �   �   �       +---runner
+    �       �   �   �           �   CMakeLists.txt
+    �       �   �   �           �   flutter_window.cpp
+    �       �   �   �           �   flutter_window.h
+    �       �   �   �           �   main.cpp
+    �       �   �   �           �   resource.h
+    �       �   �   �           �   runner.exe.manifest
+    �       �   �   �           �   Runner.rc
+    �       �   �   �           �   run_loop.cpp
+    �       �   �   �           �   run_loop.h
+    �       �   �   �           �   utils.cpp
+    �       �   �   �           �   utils.h
+    �       �   �   �           �   win32_window.cpp
+    �       �   �   �           �   win32_window.h
+    �       �   �   �           �   
+    �       �   �   �           +---resources
+    �       �   �   �                   app_icon.ico
+    �       �   �   �                   
+    �       �   �   +---lib
+    �       �   �   �       shared_preferences_windows.dart
+    �       �   �   �       
+    �       �   �   +---test
+    �       �   �           fake_path_provider_windows.dart
+    �       �   �           legacy_shared_preferences_windows_test.dart
+    �       �   �           shared_preferences_windows_async_test.dart
+    �       �   �           
+    �       �   +---url_launcher_windows
+    �       �       �   AUTHORS
+    �       �       �   CHANGELOG.md
+    �       �       �   LICENSE
+    �       �       �   pubspec.yaml
+    �       �       �   README.md
+    �       �       �   
+    �       �       +---example
+    �       �       �   �   pubspec.yaml
+    �       �       �   �   README.md
+    �       �       �   �   
+    �       �       �   +---integration_test
+    �       �       �   �       url_launcher_test.dart
+    �       �       �   �       
+    �       �       �   +---lib
+    �       �       �   �       main.dart
+    �       �       �   �       
+    �       �       �   +---test_driver
+    �       �       �   �       integration_test.dart
+    �       �       �   �       
+    �       �       �   +---windows
+    �       �       �       �   CMakeLists.txt
+    �       �       �       �   
+    �       �       �       +---flutter
+    �       �       �       �       CMakeLists.txt
+    �       �       �       �       generated_plugins.cmake
+    �       �       �       �       
+    �       �       �       +---runner
+    �       �       �           �   CMakeLists.txt
+    �       �       �           �   flutter_window.cpp
+    �       �       �           �   flutter_window.h
+    �       �       �           �   main.cpp
+    �       �       �           �   resource.h
+    �       �       �           �   runner.exe.manifest
+    �       �       �           �   Runner.rc
+    �       �       �           �   run_loop.cpp
+    �       �       �           �   run_loop.h
+    �       �       �           �   utils.cpp
+    �       �       �           �   utils.h
+    �       �       �           �   win32_window.cpp
+    �       �       �           �   win32_window.h
+    �       �       �           �   
+    �       �       �           +---resources
+    �       �       �                   app_icon.ico
+    �       �       �                   
+    �       �       +---lib
+    �       �       �   �   url_launcher_windows.dart
+    �       �       �   �   
+    �       �       �   +---src
+    �       �       �           messages.g.dart
+    �       �       �           
+    �       �       +---pigeons
+    �       �       �       copyright.txt
+    �       �       �       messages.dart
+    �       �       �       
+    �       �       +---test
+    �       �       �       url_launcher_windows_test.dart
+    �       �       �       
+    �       �       +---windows
+    �       �           �   CMakeLists.txt
+    �       �           �   messages.g.cpp
+    �       �           �   messages.g.h
+    �       �           �   system_apis.cpp
+    �       �           �   system_apis.h
+    �       �           �   url_launcher_plugin.cpp
+    �       �           �   url_launcher_plugin.h
+    �       �           �   url_launcher_windows.cpp
+    �       �           �   
+    �       �           +---include
+    �       �           �   +---url_launcher_windows
+    �       �           �           url_launcher_windows.h
+    �       �           �           
+    �       �           +---test
+    �       �                   url_launcher_windows_test.cpp
+    �       �                   
+    �       +---cpp_client_wrapper
+    �           �   binary_messenger_impl.h
+    �           �   byte_buffer_streams.h
+    �           �   core_implementations.cc
+    �           �   engine_method_result.cc
+    �           �   flutter_engine.cc
+    �           �   flutter_view_controller.cc
+    �           �   plugin_registrar.cc
+    �           �   readme
+    �           �   standard_codec.cc
+    �           �   texture_registrar_impl.h
+    �           �   
+    �           +---include
+    �               +---flutter
+    �                       basic_message_channel.h
+    �                       binary_messenger.h
+    �                       byte_streams.h
+    �                       dart_project.h
+    �                       encodable_value.h
+    �                       engine_method_result.h
+    �                       event_channel.h
+    �                       event_sink.h
+    �                       event_stream_handler.h
+    �                       event_stream_handler_functions.h
+    �                       flutter_engine.h
+    �                       flutter_view.h
+    �                       flutter_view_controller.h
+    �                       message_codec.h
+    �                       method_call.h
+    �                       method_channel.h
+    �                       method_codec.h
+    �                       method_result.h
+    �                       method_result_functions.h
+    �                       plugin_registrar.h
+    �                       plugin_registrar_windows.h
+    �                       plugin_registry.h
+    �                       standard_codec_serializer.h
+    �                       standard_message_codec.h
+    �                       standard_method_codec.h
+    �                       texture_registrar.h
+    �                       
+    +---runner
+        �   CMakeLists.txt
+        �   flutter_window.cpp
+        �   flutter_window.h
+        �   main.cpp
+        �   resource.h
+        �   runner.exe.manifest
+        �   Runner.rc
+        �   utils.cpp
+        �   utils.h
+        �   win32_window.cpp
+        �   win32_window.h
+        �   
+        +---resources
+                app_icon.ico
+                
