@@ -54,8 +54,9 @@ class AtlasAppBar extends StatelessWidget {
               _ToolbarIcon(
                 icon: Icons.info_outline,
                 onTap: () {
+                  final adProvider = context.read<AdProvider>();
                   InfoSheet.show(context).whenComplete(() {
-                    context.read<AdProvider>().reloadSlot(AdSlot.infoSheet);
+                    adProvider.reloadSlot(AdSlot.infoSheet);
                   });
                 },
                 d: d,
@@ -66,8 +67,9 @@ class AtlasAppBar extends StatelessWidget {
                 icon: Icons.tune,
                 active: true,
                 onTap: () {
+                  final adProvider = context.read<AdProvider>();
                   SettingsBottomSheet.show(context).whenComplete(() {
-                    context.read<AdProvider>().reloadSlot(AdSlot.settingsSheet);
+                    adProvider.reloadSlot(AdSlot.settingsSheet);
                   });
                 },
                 d: d,
